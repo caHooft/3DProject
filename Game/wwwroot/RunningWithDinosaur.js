@@ -1,15 +1,26 @@
+var sceneWidth;
+var sceneHeight;
+var camera;
+var scene;
+var renderer;
+var dom;
+var hero;
+var sun;
+var ground;
+var orbitControl;
+
 const LoadStates = Object.freeze
-	(
-	{
-		"NOT_LOADING": 1,
-		"LOADING": 2,
-		"LOADED": 3
-	}
-	);
+  (
+  {
+    "NOT_LOADING": 1,
+    "LOADING": 2,
+    "LOADED": 3
+  }
+  );
 
 function parseCommand(input = "")
 {
-	return JSON.parse(input);
+  return JSON.parse(input);
 }
 
 var exampleSocket;
@@ -17,96 +28,160 @@ var exampleSocket;
 window.onload = function ()
 {
 
-	var camera, scene, renderer;
-	var cameraControls;
+  var camera, scene, renderer;
+  var cameraControls;
 
-	var worldObjects = {};
+  var worldObjects = {};
 
-	function init()
-	{
-		camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
-		cameraControls = new THREE.OrbitControls(camera);
-		camera.position.z = 15;
-		camera.position.y = 5;
-		camera.position.x = 15;
-		cameraControls.update();
-		scene = new THREE.Scene();
+  function init()
+  {
+    // camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
+    // cameraControls = new THREE.OrbitControls(camera);
+    // camera.position.z = 15;
+    // camera.position.y = 5;
+    // camera.position.x = 15;
+    // cameraControls.update();
+    // scene = new THREE.Scene();
 
-		renderer = new THREE.WebGLRenderer({ antialias: true });
-		renderer.setPixelRatio(window.devicePixelRatio);
-		renderer.setSize(window.innerWidth, window.innerHeight + 5);
-		document.body.appendChild(renderer.domElement);
+    // renderer = new THREE.WebGLRenderer({ antialias: true });
+    // renderer.setPixelRatio(window.devicePixelRatio);
+    // renderer.setSize(window.innerWidth, window.innerHeight + 5);
+    // document.body.appendChild(renderer.domElement);
 
-		window.addEventListener('resize', onWindowResize, false);
+    // window.addEventListener('resize', onWindowResize, false);
 
-		var sphericalSkyboxGeometry = new THREE.SphereGeometry(200, 64, 64);
-		var sphericalSkyboxMaterial = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/skybox_1.jpg"), side: THREE.DoubleSide });
-		var SphericalBox = new THREE.Mesh(sphericalSkyboxGeometry, sphericalSkyboxMaterial);
-		scene.add(SphericalBox);
+    // var sphericalSkyboxGeometry = new THREE.SphereGeometry(200, 64, 64);
+    // var sphericalSkyboxMaterial = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/skybox_1.jpg"), side: THREE.DoubleSide });
+    // var SphericalBox = new THREE.Mesh(sphericalSkyboxGeometry, sphericalSkyboxMaterial);
+    // scene.add(SphericalBox);
 
-		var light = new THREE.DirectionalLight(0xffffff);
-		light.position.set(15, 10, 15);
-		light.target.position.set(0, 0, 0);
-		light.castShadow = true;
-		light.shadowDarkness = 0.5;
-		light.shadowCameraNear = 2;
-		light.shadowCameraFar = 5;
-		light.shadowCameraLeft = -0.5;
-		light.shadowCameraRight = 0.5;
-		light.shadowCameraTop = 0.5;
-		light.shadowCameraBottom = -0.5;
-		scene.add(light);
+    // var light = new THREE.DirectionalLight(0xffffff);
+    // light.position.set(15, 10, 15);
+    // light.target.position.set(0, 0, 0);
+    // light.castShadow = true;
+    // light.shadowDarkness = 0.5;
+    // light.shadowCameraNear = 2;
+    // light.shadowCameraFar = 5;
+    // light.shadowCameraLeft = -0.5;
+    // light.shadowCameraRight = 0.5;
+    // light.shadowCameraTop = 0.5;
+    // light.shadowCameraBottom = -0.5;
+    // scene.add(light);
 
-	}
+    // set up the scene
+    createScene();
 
-	function onWindowResize()
-	{
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-		renderer.setSize(window.innerWidth, window.innerHeight);
-	}
+    //call game loop
+    update();
 
-	function animate()
-	{
-		requestAnimationFrame(animate);
-		cameraControls.update();
-		renderer.render(scene, camera);
-	}
+  }
 
-	exampleSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
-	exampleSocket.onmessage = function (event)
-	{
-		var command = parseCommand(event.data);
+  function createScene()
+  {
+    //the 3d scene
+    sceneWidth = window.innerWidth;
+    sceneHeight = window.innerHeight;
+    scene = new THREE.Scene();
+    //scene.fog = new THREE.Fog(0x00ff00, 50, 800);//enable fog
+    camera = new THREE.PerspectiveCamera(60, sceneWidth / sceneHeight, 0.1, 1000);//perspective camera
+    renderer = new THREE.WebGLRenderer({ alpha: true });//renderer with transparent backdrop
+    renderer.shadowMap.enabled = true;//enable shadow
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setSize(sceneWidth, sceneHeight);
+    dom = document.getElementById('TutContainer');
+    dom.appendChild(renderer.domElement);
 
-		if (command.command = "update")
-		{
-			if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0)
-			{
-				if (command.parameters.type == "trike")
-				{
-					console.log(command);
-					trike = new gTriceratops();
+    //add items to scene
+    var heroGeometry = new THREE.BoxGeometry(1, 1, 1);//cube
+    var heroMaterial = new THREE.MeshStandardMaterial({ color: 0x883333 });
+    hero = new THREE.Mesh(heroGeometry, heroMaterial);
+    hero.castShadow = true;
+    hero.receiveShadow = false;
+    hero.position.y = 2;
+    scene.add(hero);
+    var planeGeometry = new THREE.PlaneGeometry(5, 5, 4, 4);
+    var planeMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 })
+    ground = new THREE.Mesh(planeGeometry, planeMaterial);
+    ground.receiveShadow = true;
+    ground.castShadow = false;
+    ground.rotation.x = -Math.PI / 2;
+    scene.add(ground);
 
-					var group = new THREE.Group();
-					group.add(trike);
+    camera.position.z = 5;
+    camera.position.y = 1;
 
-					scene.add(group);
-					worldObjects[command.parameters.guid] = group;
-				}
-			}
+    sun = new THREE.DirectionalLight(0xffffff, 0.8);
+    sun.position.set(0, 4, 1);
+    sun.castShadow = true;
+    scene.add(sun);
+    //Set up shadow properties for the sun light
+    sun.shadow.mapSize.width = 256;
+    sun.shadow.mapSize.height = 256;
+    sun.shadow.camera.near = 0.5;
+    sun.shadow.camera.far = 50;
 
-			var object = worldObjects[command.parameters.guid];
+    orbitControl = new THREE.OrbitControls(camera, renderer.domElement);//helper to rotate around in scene
+    orbitControl.addEventListener('change', render);
+    //orbitControl.enableDamping = true;
+    //orbitControl.dampingFactor = 0.8;
+    orbitControl.enableZoom = false;
 
-			object.position.x = command.parameters.x;
-			object.position.y = command.parameters.y;
-			object.position.z = command.parameters.z;
+    //var helper = new THREE.CameraHelper( sun.shadow.camera );
+    //scene.add( helper );// enable to see the light cone
 
-			object.rotation.x = command.parameters.rotationX;
-			object.rotation.y = command.parameters.rotationY;
-			object.rotation.z = command.parameters.rotationZ;
-		}
-	}
+    window.addEventListener('resize', onWindowResize, false);//resize callback
+  }
 
-	init();
-	animate();
+  function onWindowResize()
+  {
+    //resize & align
+    sceneHeight = window.innerHeight;
+    sceneWidth = window.innerWidth;
+    renderer.setSize(sceneWidth, sceneHeight);
+    camera.aspect = sceneWidth / sceneHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  // function animate()
+  // {
+  //   requestAnimationFrame(animate);
+  //   cameraControls.update();
+  //   renderer.render(scene, camera);
+  // }
+
+  exampleSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
+  exampleSocket.onmessage = function (event)
+  {
+    var command = parseCommand(event.data);
+
+    if (command.command = "update")
+    {
+      if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0)
+      {
+        if (command.parameters.type == "")
+        {
+          console.log(command);
+
+          var group = new THREE.Group();
+          group.add(robot);
+
+          scene.add(group);
+          worldObjects[command.parameters.guid] = group;
+        }
+      }
+
+      var object = worldObjects[command.parameters.guid];
+
+      object.position.x = command.parameters.x;
+      object.position.y = command.parameters.y;
+      object.position.z = command.parameters.z;
+
+      object.rotation.x = command.parameters.rotationX;
+      object.rotation.y = command.parameters.rotationY;
+      object.rotation.z = command.parameters.rotationZ;
+    }
+  }
+
+  init();
+  // animate();
 }
