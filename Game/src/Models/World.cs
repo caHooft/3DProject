@@ -14,7 +14,14 @@ namespace Models
 
 		public World()
 		{
+			Triceratops trike = CreateTriceratops(0, 0, 0);
+		}
 
+		private Triceratops CreateTriceratops(double x, double y, double z)
+		{
+			Triceratops trike = new Triceratops(x, y, z, 0, 0, 0);
+			worldObjects.Add(trike);
+			return trike;
 		}
 
 		public IDisposable Subscribe(IObserver<Command> observer)

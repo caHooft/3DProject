@@ -82,12 +82,13 @@ window.onload = function ()
 		{
 			if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0)
 			{
-				if (command.parameters.type == "")
+				if (command.parameters.type == "trike")
 				{
 					console.log(command);
+					trike = new gTriceratops();
 
 					var group = new THREE.Group();
-					group.add(robot);
+					group.add(trike);
 
 					scene.add(group);
 					worldObjects[command.parameters.guid] = group;
