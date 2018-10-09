@@ -40,7 +40,7 @@ window.onload = function ()
 		window.addEventListener('resize', onWindowResize, false);
 
 		var sphericalSkyboxGeometry = new THREE.SphereGeometry(200, 64, 64);
-		var sphericalSkyboxMaterial = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Milky.jpg"), side: THREE.DoubleSide });
+		var sphericalSkyboxMaterial = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/skybox_1.jpg"), side: THREE.DoubleSide });
 		var SphericalBox = new THREE.Mesh(sphericalSkyboxGeometry, sphericalSkyboxMaterial);
 		scene.add(SphericalBox);
 
