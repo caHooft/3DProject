@@ -355,6 +355,13 @@ function createTree()
 	tree.add(treeTrunk);
 	tree.add(treeTop);
 	return tree;
+
+	// var tree = fuckTree();
+	// tree.position.y = 0.25;
+	// tree.rotation.y = (Math.random() * (Math.PI));
+	// var jeez = new THREE.Object3D();
+	// jeez.add(tree);
+	// return jeez;
 }
 
 function fuckTree()
@@ -372,14 +379,7 @@ function fuckTree()
 
 		objLoader.load('Tree.obj', function (object)
 		{
-			var tree = new THREE.Object3D();
-			tree.add(object);
-			tree.receiveShadow = false;
-			tree.castShadow = true;
-			tree.position.y = 0.9;
-			tree.rotation.y = (Math.random() * (Math.PI));
-
-			return tree;
+			return object;
 		}
 		);
 	}
@@ -475,7 +475,6 @@ function update()
 
 function doTreeLogic()
 {
-<<<<<<< HEAD
 	var oneTree;
 	var treePos = new THREE.Vector3();
 	var treesToRemove = [];
@@ -486,19 +485,17 @@ function doTreeLogic()
 		if (treePos.z > 6 && oneTree.visible)
 		{//gone out of our view zone
 			treesToRemove.push(oneTree);
-		}
-
-		else
+		} else
 		{//check collision
 			if (treePos.distanceTo(heroSphere.position) <= 0.6)
 			{
 				console.log("hit");
 				hasCollided = true;
 				explode();
+				gameOver();
 			}
 		}
 	});
-
 	var fromWhere;
 	treesToRemove.forEach(function (element, index)
 	{
@@ -509,44 +506,10 @@ function doTreeLogic()
 		oneTree.visible = false;
 		console.log("remove tree");
 	});
-=======
-  var oneTree;
-  var treePos = new THREE.Vector3();
-  var treesToRemove = [];
-  treesInPath.forEach(function (element, index)
-  {
-    oneTree = treesInPath[index];
-    treePos.setFromMatrixPosition(oneTree.matrixWorld);
-    if (treePos.z > 6 && oneTree.visible)
-    {//gone out of our view zone
-      treesToRemove.push(oneTree);
-    } else
-    {//check collision
-      if (treePos.distanceTo(heroSphere.position) <= 0.6)
-      {
-        console.log("hit");
-        hasCollided = true;
-        explode();
-        gameOver();
-      }
-    }
-  });
-  var fromWhere;
-  treesToRemove.forEach(function (element, index)
-  {
-    oneTree = treesToRemove[index];
-    fromWhere = treesInPath.indexOf(oneTree);
-    treesInPath.splice(fromWhere, 1);
-    treesPool.push(oneTree);
-    oneTree.visible = false;
-    console.log("remove tree");
-  });
->>>>>>> 2978bd42d66a52954a9f18e55e9f6165d8ed5d5f
 }
 
 function doExplosionLogic()
 {
-<<<<<<< HEAD
 	if (!particles.visible) return;
 
 	for (var i = 0; i < particleCount; i++)
@@ -581,37 +544,6 @@ function explode()
 	}
 	explosionPower = 1.07;
 	particles.visible = true;
-=======
-  if (!particles.visible) return;
-  for (var i = 0; i < particleCount; i++)
-  {
-    particleGeometry.vertices[i].multiplyScalar(explosionPower);
-  }
-  if (explosionPower > 1.005)
-  {
-    explosionPower -= 0.001;
-  } else
-  {
-    particles.visible = false;
-  }
-  particleGeometry.verticesNeedUpdate = true;
-}
-function explode()
-{
-  particles.position.y = 2;
-  particles.position.z = 4.8;
-  particles.position.x = heroSphere.position.x;
-  for (var i = 0; i < particleCount; i++)
-  {
-    var vertex = new THREE.Vector3();
-    vertex.x = -0.2 + Math.random() * 0.4;
-    vertex.y = -0.2 + Math.random() * 0.4;
-    vertex.z = -0.2 + Math.random() * 0.4;
-    particleGeometry.vertices[i] = vertex;
-  }
-  explosionPower = 1.07;
-  particles.visible = true;
->>>>>>> 2978bd42d66a52954a9f18e55e9f6165d8ed5d5f
 }
 
 function render()
