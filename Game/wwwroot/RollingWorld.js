@@ -100,7 +100,6 @@ function createScene()
 	//text2.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
 	scoreText.style.width = 100;
 	scoreText.style.height = 100;
-	//scoreText.style.backgroundColor = "blue";
 	scoreText.innerHTML = "0";
 	scoreText.style.top = 50 + 'px';
 	scoreText.style.left = 10 + 'px';
@@ -110,7 +109,7 @@ function createScene()
 	infoText.style.position = 'absolute';
 	infoText.style.width = 100;
 	infoText.style.height = 100;
-	infoText.style.backgroundColor = "yellow";
+	//infoText.style.backgroundColor = "yellow";
 	infoText.innerHTML = "UP - Jump, Left/Right - Move";
 	infoText.style.top = 10 + 'px';
 	infoText.style.left = 10 + 'px';
@@ -553,9 +552,20 @@ function render()
 
 function gameOver()
 {
-	//cancelAnimationFrame(globalRenderID);
-	//window.clearInterval(powerupSpawnIntervalID);
-	alert("Game Over!, Your score is: " + score);
+	var screenWidth = 0;
+	var screenHeight = 0;
+	var gameOverText = document.createElement('div');
+	gameOverText.style.position = 'absolute';
+	gameOverText.innerHTML = "Game Over! Your score is: " + score;
+	screenHeight = screen.height;
+	screenWidth = screen.width;
+	gameOverText.style.width = 100;
+	gameOverText.style.height = 100;
+	gameOverText.style.top = screenHeight / 2 - 100 + 'px';
+	gameOverText.style.left = screenWidth / 2 - 300 + 'px';
+	gameOverText.style.fontSize = 50 + 'px'
+
+	document.body.appendChild(gameOverText);
 }
 
 function onWindowResize()
