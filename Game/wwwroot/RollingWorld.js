@@ -319,6 +319,7 @@ function addTree(inPath, row, isLeft)
 
 	rollingGroundSphere.add(newTree);
 }
+
 function createTree()
 {
 	var sides = 8;
@@ -352,6 +353,32 @@ function createTree()
 	tree.add(treeTop);
 	return tree;
 }
+
+// function createTree()
+// {
+// 	var mtlLoader = new THREE.MTLLoader();
+
+// 	mtlLoader.setTexturePath('/Resources/Tree/');
+// 	mtlLoader.setPath('/Resources/Dinos/Tree/');
+// 	mtlLoader.load('Tree.mtl', function (materials)
+// 	{
+// 		materials.preload();
+// 		var objLoader = new THREE.OBJLoader();
+// 		objLoader.setMaterials(materials);
+// 		objLoader.setPath('/Resources/Dinos/Tree/');
+
+// 		objLoader.load('Tree.obj', function (object)
+// 		{
+// 			object.receiveShadow = false;
+// 			object.castShadow = true;
+// 		}
+// 		);
+// 	}
+// 	);
+
+// 	return object
+// }
+
 function blowUpTree(vertices, sides, currentTier, scalarMultiplier, odd)
 {
 	var vertexIndex;
@@ -391,6 +418,7 @@ function blowUpTree(vertices, sides, currentTier, scalarMultiplier, odd)
 		}
 	}
 }
+
 function tightenTree(vertices, sides, currentTier)
 {
 	var vertexIndex;
@@ -437,6 +465,7 @@ function update()
 	render();
 	requestAnimationFrame(update);//request next update
 }
+
 function doTreeLogic()
 {
 	var oneTree;
@@ -449,7 +478,9 @@ function doTreeLogic()
 		if (treePos.z > 6 && oneTree.visible)
 		{//gone out of our view zone
 			treesToRemove.push(oneTree);
-		} else
+		}
+
+		else
 		{//check collision
 			if (treePos.distanceTo(heroSphere.position) <= 0.6)
 			{
@@ -459,6 +490,7 @@ function doTreeLogic()
 			}
 		}
 	});
+
 	var fromWhere;
 	treesToRemove.forEach(function (element, index)
 	{
@@ -470,17 +502,22 @@ function doTreeLogic()
 		console.log("remove tree");
 	});
 }
+
 function doExplosionLogic()
 {
 	if (!particles.visible) return;
+
 	for (var i = 0; i < particleCount; i++)
 	{
 		particleGeometry.vertices[i].multiplyScalar(explosionPower);
 	}
+
 	if (explosionPower > 1.005)
 	{
 		explosionPower -= 0.001;
-	} else
+	}
+
+	else
 	{
 		particles.visible = false;
 	}
@@ -491,6 +528,7 @@ function explode()
 	particles.position.y = 2;
 	particles.position.z = 4.8;
 	particles.position.x = heroSphere.position.x;
+
 	for (var i = 0; i < particleCount; i++)
 	{
 		var vertex = new THREE.Vector3();
@@ -502,15 +540,18 @@ function explode()
 	explosionPower = 1.07;
 	particles.visible = true;
 }
+
 function render()
 {
 	renderer.render(scene, camera);//draw
 }
+
 function gameOver()
 {
 	//cancelAnimationFrame( globalRenderID );
 	//window.clearInterval( powerupSpawnIntervalID );
 }
+
 function onWindowResize()
 {
 	//resize & align
