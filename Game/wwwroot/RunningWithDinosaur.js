@@ -1,4 +1,3 @@
-
 var sceneWidth;
 var sceneHeight;
 var camera;
