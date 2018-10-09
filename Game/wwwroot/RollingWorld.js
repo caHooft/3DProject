@@ -509,8 +509,9 @@ function render()
 }
 function gameOver()
 {
-  cancelAnimationFrame(globalRenderID);
-  window.clearInterval(powerupSpawnIntervalID);
+  //cancelAnimationFrame(globalRenderID);
+  //window.clearInterval(powerupSpawnIntervalID);
+  alert("Game Over!, Your score is: " + score);
 }
 function onWindowResize()
 {
