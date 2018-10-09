@@ -1,0 +1,66 @@
+# 3ds Max Wavefront OBJ Exporter v0.94b - (c)2007 guruware
+# File Created: 16.09.2016 17:08:56
+
+newmtl bark
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 1.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.8118 0.6863 0.6275
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder gsm\Bark-2.png
+	map_Kd D:\New folder gsm\Bark-2.png
+	map_bump -bm 0.3000 D:\New folder gsm\Bark-2.png
+	bump -bm 0.3000 D:\New folder gsm\Bark-2.png
+
+newmtl leaf
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 1.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.6157 0.7333 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder gsm\Leaf10_D.jpg
+	map_Kd D:\New folder gsm\Leaf10_D.jpg
+	map_bump -bm 0.3000 D:\New folder gsm\Leaf10_D.jpg
+	bump -bm 0.3000 D:\New folder gsm\Leaf10_D.jpg
+
+newmtl aa
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 1.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.5843 0.7451 0.6549
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder gsm\Leaf10_D.jpg
+	map_Kd D:\New folder gsm\Leaf10_D.jpg
+	map_bump -bm 0.3000 D:\New folder gsm\Leaf10_D.jpg
+	bump -bm 0.3000 D:\New folder gsm\Leaf10_D.jpg
+
+newmtl bb
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 1.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0000 0.0000 0.0000
+	Kd 0.5843 0.7451 0.6549
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka D:\New folder gsm\Leaf10_D.jpg
+	map_Kd D:\New folder gsm\Leaf10_D.jpg
+	map_bump -bm 0.3000 D:\New folder gsm\Leaf10_D.jpg
+	bump -bm 0.3000 D:\New folder gsm\Leaf10_D.jpg
