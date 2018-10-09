@@ -302,10 +302,13 @@ function addTree(inPath, row, isLeft)
 	{
 		newTree = createTree();
 		var forestAreaAngle = 0;//[1.52,1.57,1.62];
+
 		if (isLeft)
 		{
 			forestAreaAngle = 1.68 + Math.random() * 0.1;
-		} else
+		}
+
+		else
 		{
 			forestAreaAngle = 1.46 - Math.random() * 0.1;
 		}
@@ -354,30 +357,34 @@ function createTree()
 	return tree;
 }
 
-// function createTree()
-// {
-// 	var mtlLoader = new THREE.MTLLoader();
+function fuckTree()
+{
+	var mtlLoader = new THREE.MTLLoader();
 
-// 	mtlLoader.setTexturePath('/Resources/Tree/');
-// 	mtlLoader.setPath('/Resources/Dinos/Tree/');
-// 	mtlLoader.load('Tree.mtl', function (materials)
-// 	{
-// 		materials.preload();
-// 		var objLoader = new THREE.OBJLoader();
-// 		objLoader.setMaterials(materials);
-// 		objLoader.setPath('/Resources/Dinos/Tree/');
+	mtlLoader.setTexturePath('/Resources/Tree/');
+	mtlLoader.setPath('/Resources/Tree/');
+	mtlLoader.load('Tree.mtl', function (materials)
+	{
+		materials.preload();
+		var objLoader = new THREE.OBJLoader();
+		objLoader.setMaterials(materials);
+		objLoader.setPath('/Resources/Tree/');
 
-// 		objLoader.load('Tree.obj', function (object)
-// 		{
-// 			object.receiveShadow = false;
-// 			object.castShadow = true;
-// 		}
-// 		);
-// 	}
-// 	);
+		objLoader.load('Tree.obj', function (object)
+		{
+			var tree = new THREE.Object3D();
+			tree.add(object);
+			tree.receiveShadow = false;
+			tree.castShadow = true;
+			tree.position.y = 0.9;
+			tree.rotation.y = (Math.random() * (Math.PI));
 
-// 	return object
-// }
+			return tree;
+		}
+		);
+	}
+	);
+}
 
 function blowUpTree(vertices, sides, currentTier, scalarMultiplier, odd)
 {
