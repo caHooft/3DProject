@@ -15,6 +15,8 @@ namespace Models
 		public World()
 		{
 			Triceratops trike = CreateTriceratops(0, 0, 0);
+			TRex trex = CreateTRex(10, 0, 0);
+			Stegosaurus steg = CreateStegosaurus(20, 0, 0);
 		}
 
 		private Triceratops CreateTriceratops(double x, double y, double z)
@@ -22,6 +24,20 @@ namespace Models
 			Triceratops trike = new Triceratops(x, y, z, 0, 0, 0);
 			worldObjects.Add(trike);
 			return trike;
+		}
+
+		private TRex CreateTRex(double x, double y, double z)
+		{
+			TRex trex = new TRex(x, y, z, 0, 0, 0);
+			worldObjects.Add(trex);
+			return trex;
+		}
+
+		private Stegosaurus CreateStegosaurus(double x, double y, double z)
+		{
+			Stegosaurus steg = new Stegosaurus(x, y, z, 0, 0, 0);
+			worldObjects.Add(steg);
+			return steg;
 		}
 
 		public IDisposable Subscribe(IObserver<Command> observer)
