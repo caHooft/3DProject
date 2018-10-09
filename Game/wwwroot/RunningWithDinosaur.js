@@ -46,7 +46,7 @@ window.onload = function ()
     // renderer = new THREE.WebGLRenderer({ antialias: true });
     // renderer.setPixelRatio(window.devicePixelRatio);
     // renderer.setSize(window.innerWidth, window.innerHeight + 5);
-    // document.body.appendChild(renderer.domElement);
+    //document.body.appendChild(renderer.domElement);
 
     // window.addEventListener('resize', onWindowResize, false);
 
@@ -78,56 +78,73 @@ window.onload = function ()
 
   function createScene()
   {
-    //the 3d scene
+    hasCollided = false;
+    score = 0;
+    treesInPath = [];
+    treesPool = [];
+    clock = new THREE.Clock();
+    clock.start();
+    //heroRollingSpeed = (rollingSpeed * worldRadius / heroRadius) / 5;
+    sphericalHelper = new THREE.Spherical();
+    pathAngleValues = [1.52, 1.57, 1.62];
     sceneWidth = window.innerWidth;
     sceneHeight = window.innerHeight;
-    scene = new THREE.Scene();
-    //scene.fog = new THREE.Fog(0x00ff00, 50, 800);//enable fog
+    scene = new THREE.Scene();//the 3d scene
+    scene.fog = new THREE.FogExp2(0xf0fff0, 0.14);
+
     camera = new THREE.PerspectiveCamera(60, sceneWidth / sceneHeight, 0.1, 1000);//perspective camera
+
+    camera.position.z = 6.5;
+    camera.position.y = 2.5;
     renderer = new THREE.WebGLRenderer({ alpha: true });//renderer with transparent backdrop
+    renderer.setClearColor(0xfffafa, 1);
     renderer.shadowMap.enabled = true;//enable shadow
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.setSize(sceneWidth, sceneHeight);
-    dom = document.getElementById('TutContainer');
-    dom.appendChild(renderer.domElement);
+    //dom = document.getElementById('TutContainer');
+    document.appendChild(renderer.domElement);
+    //stats = new Stats();
+    //dom.appendChild(stats.dom);
+    // createTreesPool();
+    // addWorld();
+    // addHero();
+    // addLight();
+    // addExplosion();
 
-    //add items to scene
-    var heroGeometry = new THREE.BoxGeometry(1, 1, 1);//cube
-    var heroMaterial = new THREE.MeshStandardMaterial({ color: 0x883333 });
-    hero = new THREE.Mesh(heroGeometry, heroMaterial);
-    hero.castShadow = true;
-    hero.receiveShadow = false;
-    hero.position.y = 2;
-    scene.add(hero);
-    var planeGeometry = new THREE.PlaneGeometry(5, 5, 4, 4);
-    var planeMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 })
-    ground = new THREE.Mesh(planeGeometry, planeMaterial);
-    ground.receiveShadow = true;
-    ground.castShadow = false;
-    ground.rotation.x = -Math.PI / 2;
-    scene.add(ground);
-
-    camera.position.z = 5;
-    camera.position.y = 1;
-
-    sun = new THREE.DirectionalLight(0xffffff, 0.8);
-    sun.position.set(0, 4, 1);
-    sun.castShadow = true;
-    scene.add(sun);
-    //Set up shadow properties for the sun light
-    sun.shadow.mapSize.width = 256;
-    sun.shadow.mapSize.height = 256;
-    sun.shadow.camera.near = 0.5;
-    sun.shadow.camera.far = 50;
-
-    orbitControl = new THREE.OrbitControls(camera, renderer.domElement);//helper to rotate around in scene
-    orbitControl.addEventListener('change', render);
-    //orbitControl.enableDamping = true;
-    //orbitControl.dampingFactor = 0.8;
+    /*orbitControl = new THREE.OrbitControls( camera, renderer.domElement );//helper to rotate around in scene
+    orbitControl.addEventListener( 'change', render );
+    orbitControl.noKeys = true;
+    orbitControl.noPan = true;
     orbitControl.enableZoom = false;
+    orbitControl.minPolarAngle = 1.1;
+    orbitControl.maxPolarAngle = 1.1;
+    orbitControl.minAzimuthAngle = -0.2;
+    orbitControl.maxAzimuthAngle = 0.2;
+    */
+    window.addEventListener('resize', onWindowResize, false);//resize callback
 
-    //var helper = new THREE.CameraHelper( sun.shadow.camera );
-    //scene.add( helper );// enable to see the light cone
+    document.onkeydown = handleKeyDown;
+
+    scoreText = document.createElement('div');
+    scoreText.style.position = 'absolute';
+    //text2.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
+    scoreText.style.width = 100;
+    scoreText.style.height = 100;
+    //scoreText.style.backgroundColor = "blue";
+    scoreText.innerHTML = "0";
+    scoreText.style.top = 50 + 'px';
+    scoreText.style.left = 10 + 'px';
+    document.body.appendChild(scoreText);
+
+    var infoText = document.createElement('div');
+    infoText.style.position = 'absolute';
+    infoText.style.width = 100;
+    infoText.style.height = 100;
+    infoText.style.backgroundColor = "yellow";
+    infoText.innerHTML = "UP - Jump, Left/Right - Move";
+    infoText.style.top = 10 + 'px';
+    infoText.style.left = 10 + 'px';
+    document.body.appendChild(infoText);
 
     window.addEventListener('resize', onWindowResize, false);//resize callback
   }
@@ -172,13 +189,13 @@ window.onload = function ()
 
       var object = worldObjects[command.parameters.guid];
 
-      object.position.x = command.parameters.x;
-      object.position.y = command.parameters.y;
-      object.position.z = command.parameters.z;
+      // object.position.x = command.parameters.x;
+      // object.position.y = command.parameters.y;
+      // object.position.z = command.parameters.z;
 
-      object.rotation.x = command.parameters.rotationX;
-      object.rotation.y = command.parameters.rotationY;
-      object.rotation.z = command.parameters.rotationZ;
+      // object.rotation.x = command.parameters.rotationX;
+      // object.rotation.y = command.parameters.rotationY;
+      // object.rotation.z = command.parameters.rotationZ;
     }
   }
 
