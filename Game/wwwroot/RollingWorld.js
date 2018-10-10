@@ -37,6 +37,7 @@ var scoreText;
 var score;
 var hasCollided;
 var startGame;
+var instructionTextRemoved = false;
 
 init();
 
@@ -474,7 +475,14 @@ function update()
 	}
 	else
 	{
-		document.body.removeChild(document.body.getElementById("kut"));
+		if (!instructionTextRemoved)
+		{
+			document.getElementById("instructionText").remove();
+			instructionTextRemoved = true;
+			console.log("hey");
+		}
+		// var instruction = document.getElementsByTagName("instructionText");
+		// document.body.removeChild(instruction);
 		//stats.update();
 		//animate
 		rollingGroundSphere.rotation.x += rollingSpeed;
@@ -539,6 +547,21 @@ function doTreeLogic()
 		console.log("remove tree");
 	});
 }
+Element.prototype.remove = function ()
+{
+	this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function ()
+{
+	for (var i = this.length - 1; i >= 0; i--)
+	{
+		if (this[i] && this[i].parentElement)
+		{
+			this[i].parentElement.removeChild(this[i]);
+		}
+	}
+}
+
 
 function doExplosionLogic()
 {
@@ -608,6 +631,7 @@ function Instructions()
 	var instructionText = document.createElement('div');
 	instructionText.style.position = 'absolute';
 	instructionText.innerHTML = "UP = Jump <br> Left / Right = Move <br> Press Space to Start";
+	instructionText.tagName = "instructionText";
 	screenHeight = screen.height;
 	screenWidth = screen.width;
 	instructionText.style.width = 100;
@@ -615,7 +639,7 @@ function Instructions()
 	instructionText.style.top = screenHeight / 2 - 100 + 'px';
 	instructionText.style.left = screenWidth / 2 - 300 + 'px';
 	instructionText.style.fontSize = 50 + 'px'
-
+	instructionText.setAttribute("id", "instructionText");
 	document.body.appendChild(instructionText);
 }
 
