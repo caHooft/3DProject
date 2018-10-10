@@ -1,14 +1,3 @@
-var sceneWidth;
-var sceneHeight;
-var camera;
-var scene;
-var renderer;
-var dom;
-var hero;
-var sun;
-var ground;
-var orbitControl;
-
 const LoadStates = Object.freeze
 	(
 	{

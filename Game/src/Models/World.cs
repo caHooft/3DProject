@@ -14,9 +14,9 @@ namespace Models
 
 		public World()
 		{
-			Triceratops trike = CreateTriceratops(0, 0, 0);
-			TRex trex = CreateTRex(10, 0, 0);
-			Stegosaurus steg = CreateStegosaurus(20, 0, 0);
+			// Triceratops trike = CreateTriceratops(0, 0, 0);
+			// TRex trex = CreateTRex(10, 0, 0);
+			// Stegosaurus steg = CreateStegosaurus(20, 0, 0);
 		}
 
 		private Triceratops CreateTriceratops(double x, double y, double z)
