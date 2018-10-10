@@ -36,8 +36,10 @@ var particles;
 var scoreText;
 var score;
 var hasCollided;
-var startGame;
-var instructionTextRemoved = false;
+var startGame = false;
+var gameOverCalled = false;
+var instructionNode;
+var gameOverNode;
 
 init();
 
@@ -84,7 +86,7 @@ function createScene()
 		[
 			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Left.jpg"), side: THREE.DoubleSide }), //left
 			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Right.jpg"), side: THREE.DoubleSide }), //right
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Up.jpg"), side: THREE.DoubleSide, rotation: 0.5 }), //up
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Up.jpg"), side: THREE.DoubleSide }), //up
 			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Down.jpg"), side: THREE.DoubleSide }), //down
 			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Front.jpg"), side: THREE.DoubleSide }), //front
 			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Back.jpg"), side: THREE.DoubleSide }) //back
@@ -469,46 +471,54 @@ function tightenTree(vertices, sides, currentTier)
 
 function update()
 {
+	//Displays instructions until space is pressed
 	if (!startGame)
 	{
 		Instructions();
 	}
 	else
 	{
-		if (!instructionTextRemoved)
+		//removes instructions
+		if (instructionNode != null)
 		{
 			document.getElementById("instructionText").remove();
-			instructionTextRemoved = true;
-			console.log("hey");
+			instructionNode = null;
 		}
-		// var instruction = document.getElementsByTagName("instructionText");
-		// document.body.removeChild(instruction);
-		//stats.update();
-		//animate
-		rollingGroundSphere.rotation.x += rollingSpeed;
-		heroSphere.rotation.x -= heroRollingSpeed;
-		cubeSkybox.rotation.x = rollingGroundSphere.rotation.x;
-		if (heroSphere.position.y <= heroBaseY)
+		else
 		{
-			jumping = false;
-			bounceValue = (Math.random() * 0.04) + 0.005;
-		}
-		heroSphere.position.y += bounceValue;
-		heroSphere.position.x = THREE.Math.lerp(heroSphere.position.x, currentLane, 2 * clock.getDelta());//clock.getElapsedTime());
-		bounceValue -= gravity;
-		if (clock.getElapsedTime() > treeReleaseInterval)
-		{
-			clock.start();
-			addPathTree();
-			if (!hasCollided)
+			//stats.update();
+			//animate
+			rollingGroundSphere.rotation.x += rollingSpeed;
+			heroSphere.rotation.x -= heroRollingSpeed;
+			cubeSkybox.rotation.x = rollingGroundSphere.rotation.x;
+			if (heroSphere.position.y <= heroBaseY)
 			{
-				score += 2 * treeReleaseInterval;
-				scoreText.innerHTML = score.toString();
+				jumping = false;
+				bounceValue = (Math.random() * 0.04) + 0.005;
+			}
+			heroSphere.position.y += bounceValue;
+			heroSphere.position.x = THREE.Math.lerp(heroSphere.position.x, currentLane, 2 * clock.getDelta());//clock.getElapsedTime());
+			bounceValue -= gravity;
+			if (clock.getElapsedTime() > treeReleaseInterval)
+			{
+				clock.start();
+				addPathTree();
+				if (!hasCollided)
+				{
+					score += 2 * treeReleaseInterval;
+					scoreText.innerHTML = score.toString();
+				}
+			}
+			doTreeLogic();
+			doExplosionLogic();
+
+			if (gameOverCalled)
+			{
+				gameOver();
 			}
 		}
-		doTreeLogic();
-		doExplosionLogic();
 	}
+
 	render();
 	requestAnimationFrame(update);//request next update
 }
@@ -532,7 +542,7 @@ function doTreeLogic()
 				console.log("hit");
 				hasCollided = true;
 				explode();
-				gameOver();
+				gameOverCalled = true;
 			}
 		}
 	});
@@ -608,39 +618,50 @@ function render()
 
 function gameOver()
 {
-	var screenWidth = 0;
-	var screenHeight = 0;
-	var gameOverText = document.createElement('div');
-	gameOverText.style.position = 'absolute';
-	gameOverText.innerHTML = "Game Over! Your score is: " + score;
-	screenHeight = screen.height;
-	screenWidth = screen.width;
-	gameOverText.style.width = 100;
-	gameOverText.style.height = 100;
-	gameOverText.style.top = screenHeight / 2 - 100 + 'px';
-	gameOverText.style.left = screenWidth / 2 - 300 + 'px';
-	gameOverText.style.fontSize = 50 + 'px'
+	if (gameOverNode == null)
+	{
+		var gameOverText = document.createElement('div');
+		gameOverText.style.position = 'absolute';
+		gameOverText.innerHTML = "Game Over! Your score is: " + score;
+		gameOverText.style.width = 100;
+		gameOverText.style.height = 100;
+		gameOverText.style.top = sceneHeight / 2 - gameOverText.style.height / 2 - 100 + 'px';
+		gameOverText.style.left = sceneWidth / 2 - gameOverText.style.width / 2 - 300 + 'px';
+		gameOverText.style.fontSize = 50 + 'px';
+		gameOverText.setAttribute("id", "gameOverText");
+		document.body.appendChild(gameOverText);
+		gameOverNode = document.getElementById("gameOverText");
+		console.log(gameOverNode);
+	}
+	else
+	{
+		gameOverNode.style.top = sceneHeight / 2 - gameOverNode.style.height / 2 - 100 + 'px';
+		gameOverNode.style.left = sceneWidth / 2 - gameOverNode.style.width / 2 - 300 + 'px';
+	}
 
-	document.body.appendChild(gameOverText);
+
 }
 
 function Instructions()
 {
-	var screenWidth = 0;
-	var screenHeight = 0;
-	var instructionText = document.createElement('div');
-	instructionText.style.position = 'absolute';
-	instructionText.innerHTML = "UP = Jump <br> Left / Right = Move <br> Press Space to Start";
-	instructionText.tagName = "instructionText";
-	screenHeight = screen.height;
-	screenWidth = screen.width;
-	instructionText.style.width = 100;
-	instructionText.style.height = 100;
-	instructionText.style.top = screenHeight / 2 - 100 + 'px';
-	instructionText.style.left = screenWidth / 2 - 300 + 'px';
-	instructionText.style.fontSize = 50 + 'px'
-	instructionText.setAttribute("id", "instructionText");
-	document.body.appendChild(instructionText);
+	if (instructionNode == null)
+	{
+		var instructionText = document.createElement('div');
+		instructionText.style.position = 'absolute';
+		instructionText.innerHTML = "Up = Jump <br> Left / Right = Move <br> Press Space to Start";
+		instructionText.style.top = sceneHeight / 2 - 100 + 'px';
+		instructionText.style.left = sceneWidth / 2 - 200 + 'px';
+		instructionText.style.fontSize = 50 + 'px'
+		instructionText.setAttribute("id", "instructionText");
+		document.body.appendChild(instructionText);
+		instructionNode = document.getElementById("instructionText");
+		console.log(instructionNode);
+	}
+	else
+	{
+		instructionNode.style.top = sceneHeight / 2 - instructionNode.style.height / 2 - 100 + 'px';
+		instructionNode.style.left = sceneWidth / 2 - instructionNode.style.width / 2 - 200 + 'px';
+	}
 }
 
 function onWindowResize()
