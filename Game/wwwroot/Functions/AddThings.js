@@ -1,9 +1,14 @@
 function addHero()
 {
+	jumping = false;
+
 	var sphereGeometry = new THREE.DodecahedronGeometry(heroRadius, 1);
 	var sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xe5f2f2, shading: THREE.FlatShading })
-	jumping = false;
 	heroSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+
+	// heroSphere = new gTRex();
+
+	heroSphere.rotation.y = (180 * Math.PI / 180);
 	heroSphere.receiveShadow = true;
 	heroSphere.castShadow = true;
 	scene.add(heroSphere);
