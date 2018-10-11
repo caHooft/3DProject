@@ -27,12 +27,12 @@ function createScene()
 	var cubeSkyboxGeometry = new THREE.BoxGeometry(900, 900, 900);
 	var cubeSkyboxMaterials =
 		[
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Left.jpg"), side: THREE.DoubleSide }), //left
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Right.jpg"), side: THREE.DoubleSide }), //right
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Up.jpg"), side: THREE.DoubleSide }), //up
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Down.jpg"), side: THREE.DoubleSide }), //down
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Front.jpg"), side: THREE.DoubleSide }), //front
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Back.jpg"), side: THREE.DoubleSide }) //back
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Clouds/Left.jpg"), side: THREE.DoubleSide }), //left
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Clouds/Right.jpg"), side: THREE.DoubleSide }), //right
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Clouds/Up.jpg"), side: THREE.DoubleSide }), //up
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Clouds/Down.jpg"), side: THREE.DoubleSide }), //down
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Clouds/Front.jpg"), side: THREE.DoubleSide }), //front
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Clouds/Back.jpg"), side: THREE.DoubleSide }) //back
 		];
 	var cubeSkyboxMaterial = new THREE.MeshFaceMaterial(cubeSkyboxMaterials);
 	cubeSkybox = new THREE.Mesh(cubeSkyboxGeometry, cubeSkyboxMaterial);
