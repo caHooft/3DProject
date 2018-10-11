@@ -38,6 +38,11 @@ var score;
 var hasCollided;
 var exampleSocket;
 var worldObjects = {};
+var startGame = false;
+var gameOverCalled = false;
+var instructionNode;
+var gameOverNode;
+
 
 init();
 
@@ -140,18 +145,38 @@ function createScene()
 	pathAngleValues = [1.52, 1.57, 1.62];
 	sceneWidth = window.innerWidth;
 	sceneHeight = window.innerHeight;
+
 	scene = new THREE.Scene();//the 3d scene
-	scene.fog = new THREE.FogExp2(0xf0fff0, 0.14);
+	//scene.fog = new THREE.FogExp2(0xf0fff0, 0.14);
+
 	camera = new THREE.PerspectiveCamera(60, sceneWidth / sceneHeight, 0.1, 1000);//perspective camera
+
 	renderer = new THREE.WebGLRenderer({ alpha: true });//renderer with transparent backdrop
-	renderer.setClearColor(0xfffafa, 1);
+	//renderer.setClearColor(0xfffafa, 1);
 	renderer.shadowMap.enabled = true;//enable shadow
 	renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	renderer.setSize(sceneWidth, sceneHeight);
+
 	dom = document.getElementById('TutContainer');
 	dom.appendChild(renderer.domElement);
 	//stats = new Stats();
 	//dom.appendChild(stats.dom);
+
+
+	var cubeSkyboxGeometry = new THREE.BoxGeometry(900, 900, 900);
+	var cubeSkyboxMaterials =
+		[
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Left.jpg"), side: THREE.DoubleSide }), //left
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Right.jpg"), side: THREE.DoubleSide }), //right
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Up.jpg"), side: THREE.DoubleSide }), //up
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Down.jpg"), side: THREE.DoubleSide }), //down
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Front.jpg"), side: THREE.DoubleSide }), //front
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Back.jpg"), side: THREE.DoubleSide }) //back
+		];
+	var cubeSkyboxMaterial = new THREE.MeshFaceMaterial(cubeSkyboxMaterials);
+	cubeSkybox = new THREE.Mesh(cubeSkyboxGeometry, cubeSkyboxMaterial);
+	scene.add(cubeSkybox);
+
 	createTreesPool();
 	addWorld();
 	addHero();
@@ -184,6 +209,9 @@ function createScene()
 	scoreText.style.left = 10 + 'px';
 	document.body.appendChild(scoreText);
 
+
+	/*
+
 	var infoText = document.createElement('div');
 	infoText.style.position = 'absolute';
 	infoText.style.width = 100;
@@ -193,6 +221,10 @@ function createScene()
 	infoText.style.top = 10 + 'px';
 	infoText.style.left = 10 + 'px';
 	document.body.appendChild(infoText);
+
+
+	*/
+
 }
 function addExplosion()
 {
@@ -224,7 +256,12 @@ function handleKeyDown(keyEvent)
 {
 	if (jumping) return;
 	var validMove = true;
-	if (keyEvent.keyCode === 37)
+
+	if (keyEvent.keyCode === 32)
+	{
+		startGame = true;
+	}
+	else if (keyEvent.keyCode === 37)
 	{//left
 		if (currentLane == middleLane)
 		{
@@ -434,12 +471,14 @@ function createTree()
 	tree.add(treeTop);
 	return tree;
 
+
 	// var tree = new THREE.Object3D();
 	// var jeez = fuckTree();
 	// tree.add(jeez);
 	// tree.position.y = 0.25;
 	// tree.rotation.y = (Math.random() * (Math.PI));
 	// return tree;
+
 }
 
 function fuckTree()
@@ -523,30 +562,54 @@ function tightenTree(vertices, sides, currentTier)
 
 function update()
 {
-	//stats.update();
-	//animate
-	rollingGroundSphere.rotation.x += rollingSpeed;
-	heroSphere.rotation.x -= heroRollingSpeed;
-	if (heroSphere.position.y <= heroBaseY)
+	//Displays instructions until space is pressed
+	if (!startGame)
 	{
-		jumping = false;
-		bounceValue = (Math.random() * 0.04) + 0.005;
+		Instructions();
 	}
-	heroSphere.position.y += bounceValue;
-	heroSphere.position.x = THREE.Math.lerp(heroSphere.position.x, currentLane, 2 * clock.getDelta());//clock.getElapsedTime());
-	bounceValue -= gravity;
-	if (clock.getElapsedTime() > treeReleaseInterval)
+	else
 	{
-		clock.start();
-		addPathTree();
-		if (!hasCollided)
+		//removes instructions
+		if (instructionNode != null)
 		{
-			score += 2 * treeReleaseInterval;
-			scoreText.innerHTML = score.toString();
+			document.getElementById("instructionText").remove();
+			instructionNode = null;
+		}
+		else
+		{
+			//stats.update();
+			//animate
+			rollingGroundSphere.rotation.x += rollingSpeed;
+			heroSphere.rotation.x -= heroRollingSpeed;
+			cubeSkybox.rotation.x = rollingGroundSphere.rotation.x;
+			if (heroSphere.position.y <= heroBaseY)
+			{
+				jumping = false;
+				bounceValue = (Math.random() * 0.04) + 0.005;
+			}
+			heroSphere.position.y += bounceValue;
+			heroSphere.position.x = THREE.Math.lerp(heroSphere.position.x, currentLane, 2 * clock.getDelta());//clock.getElapsedTime());
+			bounceValue -= gravity;
+			if (clock.getElapsedTime() > treeReleaseInterval)
+			{
+				clock.start();
+				addPathTree();
+				if (!hasCollided)
+				{
+					score += 2 * treeReleaseInterval;
+					scoreText.innerHTML = score.toString();
+				}
+			}
+			doTreeLogic();
+			doExplosionLogic();
+
+			if (gameOverCalled)
+			{
+				gameOver();
+			}
 		}
 	}
-	doTreeLogic();
-	doExplosionLogic();
+
 	render();
 	requestAnimationFrame(update);//request next update
 }
@@ -570,7 +633,7 @@ function doTreeLogic()
 				console.log("hit");
 				hasCollided = true;
 				explode();
-				gameOver();
+				gameOverCalled = true;
 			}
 		}
 	});
@@ -584,7 +647,23 @@ function doTreeLogic()
 		oneTree.visible = false;
 		console.log("remove tree");
 	});
+
 }
+Element.prototype.remove = function ()
+{
+	this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function ()
+{
+	for (var i = this.length - 1; i >= 0; i--)
+	{
+		if (this[i] && this[i].parentElement)
+		{
+			this[i].parentElement.removeChild(this[i]);
+		}
+	}
+}
+
 
 function doExplosionLogic()
 {
@@ -631,20 +710,50 @@ function render()
 
 function gameOver()
 {
-	var screenWidth = 0;
-	var screenHeight = 0;
-	var gameOverText = document.createElement('div');
-	gameOverText.style.position = 'absolute';
-	gameOverText.innerHTML = "Game Over! Your score is: " + score;
-	screenHeight = screen.height;
-	screenWidth = screen.width;
-	gameOverText.style.width = 100;
-	gameOverText.style.height = 100;
-	gameOverText.style.top = screenHeight / 2 - 100 + 'px';
-	gameOverText.style.left = screenWidth / 2 - 300 + 'px';
-	gameOverText.style.fontSize = 50 + 'px'
+	if (gameOverNode == null)
+	{
+		var gameOverText = document.createElement('div');
+		gameOverText.style.position = 'absolute';
+		gameOverText.innerHTML = "Game Over! Your score is: " + score;
+		gameOverText.style.width = 100;
+		gameOverText.style.height = 100;
+		gameOverText.style.top = sceneHeight / 2 - gameOverText.style.height / 2 - 100 + 'px';
+		gameOverText.style.left = sceneWidth / 2 - gameOverText.style.width / 2 - 300 + 'px';
+		gameOverText.style.fontSize = 50 + 'px';
+		gameOverText.setAttribute("id", "gameOverText");
+		document.body.appendChild(gameOverText);
+		gameOverNode = document.getElementById("gameOverText");
+		console.log(gameOverNode);
+	}
+	else
+	{
+		gameOverNode.style.top = sceneHeight / 2 - gameOverNode.style.height / 2 - 100 + 'px';
+		gameOverNode.style.left = sceneWidth / 2 - gameOverNode.style.width / 2 - 300 + 'px';
+	}
 
-	document.body.appendChild(gameOverText);
+
+}
+
+function Instructions()
+{
+	if (instructionNode == null)
+	{
+		var instructionText = document.createElement('div');
+		instructionText.style.position = 'absolute';
+		instructionText.innerHTML = "Up = Jump <br> Left / Right = Move <br> Press Space to Start";
+		instructionText.style.top = sceneHeight / 2 - 100 + 'px';
+		instructionText.style.left = sceneWidth / 2 - 200 + 'px';
+		instructionText.style.fontSize = 50 + 'px'
+		instructionText.setAttribute("id", "instructionText");
+		document.body.appendChild(instructionText);
+		instructionNode = document.getElementById("instructionText");
+		console.log(instructionNode);
+	}
+	else
+	{
+		instructionNode.style.top = sceneHeight / 2 - instructionNode.style.height / 2 - 100 + 'px';
+		instructionNode.style.left = sceneWidth / 2 - instructionNode.style.width / 2 - 200 + 'px';
+	}
 }
 
 function onWindowResize()
