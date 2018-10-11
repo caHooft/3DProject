@@ -65,31 +65,49 @@ function handleKeyDown(keyEvent)
 {
 	if (jumping) return;
 	var validMove = true;
+
+	if (keyEvent.keyCode === 32)
+	{
+		startGame = true;
+	}
+
 	if (keyEvent.keyCode === 37)
 	{//left
 		if (currentLane == middleLane)
 		{
 			currentLane = leftLane;
-		} else if (currentLane == rightLane)
+		}
+
+		else if (currentLane == rightLane)
 		{
 			currentLane = middleLane;
-		} else
+		}
+
+		else
 		{
 			validMove = false;
 		}
-	} else if (keyEvent.keyCode === 39)
+	}
+
+	else if (keyEvent.keyCode === 39)
 	{//right
 		if (currentLane == middleLane)
 		{
 			currentLane = rightLane;
-		} else if (currentLane == leftLane)
+		}
+
+		else if (currentLane == leftLane)
 		{
 			currentLane = middleLane;
-		} else
+		}
+
+		else
 		{
 			validMove = false;
 		}
-	} else
+	}
+
+	else
 	{
 		if (keyEvent.keyCode === 38)
 		{//up, jump

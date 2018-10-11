@@ -12,10 +12,10 @@ function createScene()
 	sceneWidth = window.innerWidth;
 	sceneHeight = window.innerHeight;
 	scene = new THREE.Scene();//the 3d scene
-	scene.fog = new THREE.FogExp2(0xf0fff0, 0.14);
+	// scene.fog = new THREE.FogExp2(0xf0fff0, 0.14);
 	camera = new THREE.PerspectiveCamera(60, sceneWidth / sceneHeight, 0.1, 1000);//perspective camera
 	renderer = new THREE.WebGLRenderer({ alpha: true });//renderer with transparent backdrop
-	renderer.setClearColor(0xfffafa, 1);
+	// renderer.setClearColor(0xfffafa, 1);
 	renderer.shadowMap.enabled = true;//enable shadow
 	renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	renderer.setSize(sceneWidth, sceneHeight);
@@ -23,6 +23,21 @@ function createScene()
 	dom.appendChild(renderer.domElement);
 	//stats = new Stats();
 	//dom.appendChild(stats.dom);
+
+	var cubeSkyboxGeometry = new THREE.BoxGeometry(900, 900, 900);
+	var cubeSkyboxMaterials =
+		[
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Left.jpg"), side: THREE.DoubleSide }), //left
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Right.jpg"), side: THREE.DoubleSide }), //right
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Up.jpg"), side: THREE.DoubleSide }), //up
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Down.jpg"), side: THREE.DoubleSide }), //down
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Front.jpg"), side: THREE.DoubleSide }), //front
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("Resources/Skybox/Violentdays/Back.jpg"), side: THREE.DoubleSide }) //back
+		];
+	var cubeSkyboxMaterial = new THREE.MeshFaceMaterial(cubeSkyboxMaterials);
+	cubeSkybox = new THREE.Mesh(cubeSkyboxGeometry, cubeSkyboxMaterial);
+	scene.add(cubeSkybox);
+
 	createTreesPool();
 	addWorld();
 	addHero();
@@ -32,15 +47,15 @@ function createScene()
 	camera.position.z = 6.5;
 	camera.position.y = 2.5;
 
-	orbitControl = new THREE.OrbitControls(camera, renderer.domElement);//helper to rotate around in scene
-	orbitControl.addEventListener('change', render);
-	orbitControl.noKeys = true;
-	orbitControl.noPan = true;
-	orbitControl.enableZoom = false;
-	orbitControl.minPolarAngle = 1.1;
-	orbitControl.maxPolarAngle = 1.1;
-	orbitControl.minAzimuthAngle = -0.2;
-	orbitControl.maxAzimuthAngle = 0.2;
+	// orbitControl = new THREE.OrbitControls(camera, renderer.domElement);//helper to rotate around in scene
+	// orbitControl.addEventListener('change', render);
+	// orbitControl.noKeys = true;
+	// orbitControl.noPan = true;
+	// orbitControl.enableZoom = false;
+	// orbitControl.minPolarAngle = 1.1;
+	// orbitControl.maxPolarAngle = 1.1;
+	// orbitControl.minAzimuthAngle = -0.2;
+	// orbitControl.maxAzimuthAngle = 0.2;
 
 	window.addEventListener('resize', onWindowResize, false);//resize callback
 
@@ -55,15 +70,6 @@ function createScene()
 	scoreText.style.top = 50 + 'px';
 	scoreText.style.left = 10 + 'px';
 	document.body.appendChild(scoreText);
-
-	var infoText = document.createElement('div');
-	infoText.style.position = 'absolute';
-	infoText.style.width = 100;
-	infoText.style.height = 100;
-	infoText.innerHTML = "UP - Jump, Left/Right - Move";
-	infoText.style.top = 10 + 'px';
-	infoText.style.left = 10 + 'px';
-	document.body.appendChild(infoText);
 }
 
 function onWindowResize()
