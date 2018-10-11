@@ -74,11 +74,6 @@ window.onload = function ()
 		update();
 	}
 
-	function render()
-	{
-		renderer.render(scene, camera);//draw
-	}
-
 	webSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
 	webSocket.onmessage = function (event) { doWebThings(event) }
 	// webSocket.onmessage = doWebThings(event)
