@@ -7,8 +7,8 @@ function addHero()
 	heroSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
 	// heroSphere = new gTRex();
+	// heroSphere.rotation.y = (180 * Math.PI / 180);
 
-	heroSphere.rotation.y = (180 * Math.PI / 180);
 	heroSphere.receiveShadow = true;
 	heroSphere.castShadow = true;
 	scene.add(heroSphere);
