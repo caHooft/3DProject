@@ -2,7 +2,7 @@ function createScene()
 {
   hasCollided = false;
   score = 0;
-  treesInPath = [];
+  dinosInPath = [];
   modelPool = [];
   clock = new THREE.Clock();
   clock.start();
