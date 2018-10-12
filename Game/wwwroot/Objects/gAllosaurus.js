@@ -1,4 +1,4 @@
-class gTRex extends THREE.Group
+class gAllosaurus extends THREE.Group
 {
 	constructor()
 	{
@@ -24,16 +24,16 @@ class gTRex extends THREE.Group
 
 		var mtlLoader = new THREE.MTLLoader();
 
-		mtlLoader.setTexturePath('/Resources/Dinos/T-Rex/');
-		mtlLoader.setPath('/Resources/Dinos/T-Rex/');
-		mtlLoader.load('trex.mtl', function (materials)
+		mtlLoader.setTexturePath('/Resources/Dinos/Allosaurus/');
+		mtlLoader.setPath('/Resources/Dinos/Allosaurus/');
+		mtlLoader.load('allo.mtl', function (materials)
 		{
 			materials.preload();
 			var objLoader = new THREE.OBJLoader();
 			objLoader.setMaterials(materials);
-			objLoader.setPath('/Resources/Dinos/T-Rex/');
+			objLoader.setPath('/Resources/Dinos/Allosaurus/');
 
-			objLoader.load('trex.obj', function (object)
+			objLoader.load('allo.obj', function (object)
 			{
 				object.receiveShadow = true;
 				object.castShadow = true;

@@ -1,4 +1,4 @@
-class gTRex extends THREE.Group
+class gBrachiosaurus extends THREE.Group
 {
 	constructor()
 	{
@@ -24,20 +24,20 @@ class gTRex extends THREE.Group
 
 		var mtlLoader = new THREE.MTLLoader();
 
-		mtlLoader.setTexturePath('/Resources/Dinos/T-Rex/');
-		mtlLoader.setPath('/Resources/Dinos/T-Rex/');
-		mtlLoader.load('trex.mtl', function (materials)
+		mtlLoader.setTexturePath('/Resources/Dinos/Brachiosaurus/');
+		mtlLoader.setPath('/Resources/Dinos/Brachiosaurus/');
+		mtlLoader.load('brac.mtl', function (materials)
 		{
 			materials.preload();
 			var objLoader = new THREE.OBJLoader();
 			objLoader.setMaterials(materials);
-			objLoader.setPath('/Resources/Dinos/T-Rex/');
+			objLoader.setPath('/Resources/Dinos/Brachiosaurus/');
 
-			objLoader.load('trex.obj', function (object)
+			objLoader.load('brac.obj', function (object)
 			{
-				object.receiveShadow = true;
+				object.receiveShadow = false;
 				object.castShadow = true;
-				object.scale.set(0.001, 0.001, 0.001);
+				object.scale.set(0.25, 0.25, 0.25);
 				selfRef.add(object);
 			}
 			);

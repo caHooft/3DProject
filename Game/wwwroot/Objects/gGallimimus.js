@@ -1,4 +1,4 @@
-class gTRex extends THREE.Group
+class gGallimimus extends THREE.Group
 {
 	constructor()
 	{
@@ -24,16 +24,16 @@ class gTRex extends THREE.Group
 
 		var mtlLoader = new THREE.MTLLoader();
 
-		mtlLoader.setTexturePath('/Resources/Dinos/T-Rex/');
-		mtlLoader.setPath('/Resources/Dinos/T-Rex/');
-		mtlLoader.load('trex.mtl', function (materials)
+		mtlLoader.setTexturePath('/Resources/Dinos/Gallimimus/');
+		mtlLoader.setPath('/Resources/Dinos/Gallimimus/');
+		mtlLoader.load('galli.mtl', function (materials)
 		{
 			materials.preload();
 			var objLoader = new THREE.OBJLoader();
 			objLoader.setMaterials(materials);
-			objLoader.setPath('/Resources/Dinos/T-Rex/');
+			objLoader.setPath('/Resources/Dinos/Gallimimus/');
 
-			objLoader.load('trex.obj', function (object)
+			objLoader.load('galli.obj', function (object)
 			{
 				object.receiveShadow = true;
 				object.castShadow = true;
