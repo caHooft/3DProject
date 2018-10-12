@@ -67,7 +67,7 @@ window.onload = function ()
 	var cameraControls;
 
 	themeMusic = new Audio("Puzzle-Dreams.mp3")
-	crashSound = new Audio("");
+	crashSound = new Audio("43607__freqman__sandbag.wav");
 
 	if (typeof themeMusic.loop == 'boolean')
 	{

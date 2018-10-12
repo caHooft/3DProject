@@ -19,8 +19,6 @@ function doExplosionLogic()
 {
 	if (!particles.visible) return;
 
-	crashSound.play();
-
 	for (var i = 0; i < particleCount; i++)
 	{
 		particleGeometry.vertices[i].multiplyScalar(explosionPower);
@@ -43,6 +41,8 @@ function explode()
 	particles.position.y = 2;
 	particles.position.z = 4.8;
 	particles.position.x = heroSphere.position.x;
+
+	crashSound.play();
 
 	for (var i = 0; i < particleCount; i++)
 	{
