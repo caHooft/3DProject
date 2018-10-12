@@ -24,19 +24,20 @@ class gStegosaurus extends THREE.Group
 
 		var mtlLoader = new THREE.MTLLoader();
 
-		mtlLoader.setTexturePath('/Resources/Dinos/Stegosaurus/stegosaurus/');
-		mtlLoader.setPath('/Resources/Dinos/Stegosaurus/stegosaurus/');
+		mtlLoader.setTexturePath('/Resources/Dinos/Stegosaurus/');
+		mtlLoader.setPath('/Resources/Dinos/Stegosaurus/');
 		mtlLoader.load('steg.mtl', function (materials)
 		{
 			materials.preload();
 			var objLoader = new THREE.OBJLoader();
 			objLoader.setMaterials(materials);
-			objLoader.setPath('/Resources/Dinos/Stegosaurus/stegosaurus/');
+			objLoader.setPath('/Resources/Dinos/Stegosaurus/');
 
 			objLoader.load('steg.obj', function (object)
 			{
-				object.receiveShadow = true;
+				object.receiveShadow = false;
 				object.castShadow = true;
+				object.scale.set(0.25, 0.25, 0.25);
 				selfRef.add(object);
 			}
 			);

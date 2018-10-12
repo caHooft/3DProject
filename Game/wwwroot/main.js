@@ -69,19 +69,19 @@ window.onload = function ()
 	themeMusic = new Audio("Puzzle-Dreams.mp3")
 	crashSound = new Audio("43607__freqman__sandbag.wav");
 
-	if (typeof themeMusic.loop == 'boolean')
-	{
-		themeMusic.loop = true;
-	}
-	else
-	{
-		themeMusic.addEventListener('ended', function ()
-		{
-			this.currentTime = 0;
-			this.play();
-		}, false);
-	}
-	themeMusic.play();
+	// if (typeof themeMusic.loop == 'boolean')
+	// {
+	// 	themeMusic.loop = true;
+	// }
+	// else
+	// {
+	// 	themeMusic.addEventListener('ended', function ()
+	// 	{
+	// 		this.currentTime = 0;
+	// 		this.play();
+	// 	}, false);
+	// }
+	// themeMusic.play();
 
 	var worldObjects = {};
 
