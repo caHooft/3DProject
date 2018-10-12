@@ -37,7 +37,7 @@ class gAllosaurus extends THREE.Group
 			{
 				object.receiveShadow = true;
 				object.castShadow = true;
-				object.scale.set(0.001, 0.001, 0.001);
+				// object.scale.set(0.001, 0.001, 0.001);
 				selfRef.add(object);
 			}
 			);
