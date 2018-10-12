@@ -52,6 +52,8 @@ var gameOverCalled = false;
 var instructionNode;
 var gameOverNode;
 
+var themeMusic;
+
 function parseCommand(input = "")
 {
 	return JSON.parse(input);
@@ -62,6 +64,22 @@ window.onload = function ()
 
 	var camera, scene, renderer;
 	var cameraControls;
+
+	themeMusic = new Audio("Puzzle-Dreams.mp3")
+
+	if (typeof themeMusic.loop == 'boolean')
+	{
+		themeMusic.loop = true;
+	}
+	else
+	{
+		themeMusic.addEventListener('ended', function ()
+		{
+			this.currentTime = 0;
+			this.play();
+		}, false);
+	}
+	themeMusic.play();
 
 	var worldObjects = {};
 
