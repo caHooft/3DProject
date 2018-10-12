@@ -2,11 +2,11 @@ function addHero()
 {
 	jumping = false;
 
-	// var sphereGeometry = new THREE.DodecahedronGeometry(heroRadius, 1);
-	// var sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xe5f2f2, shading: THREE.FlatShading })
-	// heroSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+	var sphereGeometry = new THREE.DodecahedronGeometry(heroRadius, 1);
+	var sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xe5f2f2, shading: THREE.FlatShading })
+	heroSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
-	heroSphere = new gAllosaurus();
+	// heroSphere = new gTRex();
 
 	heroSphere.rotation.y = (180 * Math.PI / 180);
 	heroSphere.receiveShadow = true;
@@ -24,7 +24,6 @@ function addWorld()
 	var tiers = 40;
 	var sphereGeometry = new THREE.SphereGeometry(worldRadius, sides, tiers);
 	var sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xfffafa, shading: THREE.FlatShading })
-
 	var vertexIndex;
 	var vertexVector = new THREE.Vector3();
 	var nextVertexVector = new THREE.Vector3();
