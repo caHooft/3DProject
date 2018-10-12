@@ -69,6 +69,47 @@ function addTree(inPath, row, isLeft)
 	rollingGroundSphere.add(newTree);
 }
 
+function createModel(index)
+{
+	var model;
+	switch (index)
+	{
+		case 0:
+			break;
+
+		case 1:
+			break;
+
+		case 2:
+			break;
+
+		case 3:
+			break;
+
+		case 4:
+			break;
+
+		case 5:
+			break;
+
+		case 6:
+			break;
+
+		case 7:
+			break;
+
+		case 8:
+			break;
+
+		case 9:
+			break;
+
+		default:
+			break;
+	}
+	return model;
+}
+
 function createTree()
 {
 	var sides = 8;
@@ -110,20 +151,20 @@ function createTree()
 	// return tree;
 }
 
-function fuckTree()
+function loadModel(pathMTL, mtlFile, pathOBJ, objFile)
 {
 	var mtlLoader = new THREE.MTLLoader();
 
-	mtlLoader.setTexturePath('/Resources/Tree/');
-	mtlLoader.setPath('/Resources/Tree/');
-	mtlLoader.load('Tree.mtl', function (materials)
+	mtlLoader.setTexturePath(pathMTL);
+	mtlLoader.setPath(patMTL);
+	mtlLoader.load(mtlFile, function (materials)
 	{
 		materials.preload();
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials(materials);
-		objLoader.setPath('/Resources/Tree/');
+		objLoader.setPath(pathOBJ);
 
-		objLoader.load('Tree.obj', function (object)
+		objLoader.load(objFile, function (object)
 		{
 			return object;
 		}
