@@ -2,13 +2,13 @@ function addHero()
 {
 	jumping = false;
 
-	// var sphereGeometry = new THREE.DodecahedronGeometry(heroRadius, 1);
-	// var sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xe5f2f2, shading: THREE.FlatShading })
-	// heroSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+	var sphereGeometry = new THREE.DodecahedronGeometry(heroRadius, 1);
+	var sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xe5f2f2, shading: THREE.FlatShading })
+	heroSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
-	heroSphere = new gTriceratops();
-	// heroSphere.rotation.y = (180 * Math.PI / 180);
+	// heroSphere = new gTRex();
 
+	heroSphere.rotation.y = (180 * Math.PI / 180);
 	heroSphere.receiveShadow = true;
 	heroSphere.castShadow = true;
 	scene.add(heroSphere);
@@ -68,7 +68,7 @@ function addWorld()
 	scene.add(rollingGroundSphere);
 	rollingGroundSphere.position.y = -24;
 	rollingGroundSphere.position.z = 2;
-	addWorldTrees();
+	addWorldModels();
 }
 
 function addLight()
