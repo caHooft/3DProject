@@ -48,10 +48,6 @@ function createModel(index)
       model = new gTriceratops;
       break;
 
-    // case 10:
-    //   model = new gTree;
-    //   break;
-
     // case 3:
     //   break;
 
@@ -84,7 +80,7 @@ function addPath()
   var lanes = [0, 1, 2];
   var lane = Math.floor(Math.random() * 3);
   addModel(true, lane);
-  lanes.splice(lane, 1); //probleem
+  lanes.splice(lane, 1);
   if (Math.random() > 0.5)
   {
     lane = Math.floor(Math.random() * 2);
@@ -132,12 +128,12 @@ function addModel(inPath, row, isLeft)
 
   newModel.position.setFromSpherical(sphericalHelper);
   var rollingGroundVector = rollingGroundSphere.position.clone().normalize();
-  var treeVector = newModel.position.clone().normalize();
-  newModel.quaternion.setFromUnitVectors(treeVector, rollingGroundVector);
+  var collisionVector = newModel.position.clone().normalize();
+  newModel.quaternion.setFromUnitVectors(collisionVector, rollingGroundVector);
   newModel.rotation.x += (Math.random() * (2 * Math.PI / 10)) + -Math.PI / 10;
   rollingGroundSphere.add(newModel);
 }
-function doTreeLogic()
+function modelManagement()
 {
   var obstacle;
   var modelPos = new THREE.Vector3();
@@ -168,6 +164,6 @@ function doTreeLogic()
     dinosInPath.splice(fromWhere, 1);
     modelPool.push(obstacle);
     obstacle.visible = false;
-    console.log("remove tree");
+    console.log("remove model");
   });
 }

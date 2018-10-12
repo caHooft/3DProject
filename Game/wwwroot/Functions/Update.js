@@ -28,17 +28,17 @@ function update()
       heroSphere.position.y += bounceValue;
       heroSphere.position.x = THREE.Math.lerp(heroSphere.position.x, currentLane, 2 * clock.getDelta());//clock.getElapsedTime());
       bounceValue -= gravity;
-      if (clock.getElapsedTime() > treeReleaseInterval)
+      if (clock.getElapsedTime() > releaseInterval)
       {
         clock.start();
         addPath();
         if (!hasCollided)
         {
-          score += 2 * treeReleaseInterval;
+          score += 2 * releaseInterval;
           scoreText.innerHTML = score.toString();
         }
       }
-      doTreeLogic();
+      modelManagement();
       doExplosionLogic();
 
       if (gameOverCalled)
