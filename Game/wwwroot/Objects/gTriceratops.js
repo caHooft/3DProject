@@ -37,6 +37,7 @@ class gTriceratops extends THREE.Group
 			{
 				object.receiveShadow = true;
 				object.castShadow = true;
+				object.scale.set(0.1, 0.1, 0.1);
 				selfRef.add(object);
 			}
 			);
