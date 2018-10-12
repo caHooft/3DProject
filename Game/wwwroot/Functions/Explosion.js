@@ -19,6 +19,8 @@ function doExplosionLogic()
 {
 	if (!particles.visible) return;
 
+	crashSound.play();
+
 	for (var i = 0; i < particleCount; i++)
 	{
 		particleGeometry.vertices[i].multiplyScalar(explosionPower);

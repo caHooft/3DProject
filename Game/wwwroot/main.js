@@ -53,6 +53,7 @@ var instructionNode;
 var gameOverNode;
 
 var themeMusic;
+var crashSound;
 
 function parseCommand(input = "")
 {
@@ -66,6 +67,7 @@ window.onload = function ()
 	var cameraControls;
 
 	themeMusic = new Audio("Puzzle-Dreams.mp3")
+	crashSound = new Audio("");
 
 	if (typeof themeMusic.loop == 'boolean')
 	{
