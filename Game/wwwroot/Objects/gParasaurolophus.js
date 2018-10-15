@@ -37,7 +37,6 @@ class gParasaurolophus extends THREE.Group
 			{
 				object.receiveShadow = false;
 				object.castShadow = true;
-				object.scale.set(0.25, 0.25, 0.25);
 				selfRef.add(object);
 			}
 			);
