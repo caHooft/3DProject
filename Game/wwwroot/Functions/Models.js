@@ -1,3 +1,5 @@
+//Randomizes all elements of an array
+//returns array
 function shuffle(array)
 {
 	var currentIndex = array.length, temporaryValue, randomIndex;
@@ -19,9 +21,10 @@ function shuffle(array)
 	return array;
 }
 
+//creates an array of all models for the game to pull from
 function createModelPool()
 {
-	var arr = [0, 1, 2];
+	var arr = [0, 1, 2,];
 	arr = shuffle(arr);
 	console.log(arr);
 	var newModel;
@@ -32,6 +35,7 @@ function createModelPool()
 	}
 }
 
+//returns model given an index from 0/9
 function createModel(index)
 {
 	switch (index)
@@ -82,6 +86,8 @@ function createModel(index)
 	return model;
 }
 
+//determines which lanes will have an obstacle
+//0.5 chance for obstacles in 2 lanes in one segment
 function addPath()
 {
 	var lanes = [0, 1, 2];
@@ -95,6 +101,7 @@ function addPath()
 	}
 }
 
+//calls for the addModel function for all models
 function addWorldModels()
 {
 	var numModels = 36;
@@ -106,9 +113,11 @@ function addWorldModels()
 	}
 }
 
+//adds a model to the rollingGroundSphere using a sphericalhelper to find the edge of the sphere
 function addModel(inPath, row, isLeft)
 {
 	var newModel;
+
 	if (inPath)
 	{
 		if (modelPool.length == 0) return;
@@ -140,6 +149,8 @@ function addModel(inPath, row, isLeft)
 	newModel.rotation.x += (Math.random() * (2 * Math.PI / 10)) + -Math.PI / 10;
 	rollingGroundSphere.add(newModel);
 }
+
+//handles the collision and collision effects
 function modelManagement()
 {
 	var obstacle;
