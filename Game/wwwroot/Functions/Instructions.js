@@ -1,3 +1,4 @@
+//makes instruction div and handles its position based on the screen size
 function Instructions()
 {
 	if (instructionNode == null)
