@@ -1,11 +1,13 @@
-# File produced by AccuTrans 3D
+# Blender MTL File: 'None'
+# Material Count: 1
 
-newmtl D_R_Calf_m
-  Ns 13.7
-  illum 2
-
-  Kd 0.5843 0.5843 0.5843
-  Ka 0.5843 0.5843 0.5843
-  Ks 0.898 0.898 0.898
-
-  map_Kd anky.png
+newmtl D_R_Calf_m.001
+Ns 11.764706
+Ka 0.584300 0.584300 0.584300
+Kd 0.584300 0.584300 0.584300
+Ks 0.898000 0.898000 0.898000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd anky.png

@@ -37,7 +37,6 @@ class gSpinosaurus extends THREE.Group
 			{
 				object.receiveShadow = false;
 				object.castShadow = true;
-				object.scale.set(0.1, 0.1, 0.1);
 				selfRef.add(object);
 			}
 			);

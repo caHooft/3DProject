@@ -21,7 +21,7 @@ function shuffle(array)
 
 function createModelPool()
 {
-	var arr = [0, 1, 2];
+	var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 	arr = shuffle(arr);
 	console.log(arr);
 	var newModel;
