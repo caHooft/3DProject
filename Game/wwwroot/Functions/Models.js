@@ -98,7 +98,7 @@ function createModel(index)
       // {
       //   model = new gTreeOak;
       // }
-      model = new gTreeNeedle;
+      // model = new gTreeNeedle;
       break;
 
     default:
