@@ -98,7 +98,7 @@ function createModel(index)
 			// {
 			//   model = new gTreeOak;
 			// }
-			model = new gTreeNeedle;
+			// model = new gTreeNeedle;
 			break;
 
 		default:
@@ -115,17 +115,17 @@ function addPath()
 	var lane = Math.floor(Math.random() * 3);
 	addModel(true, lane);
 	lanes.splice(lane, 1);
-	if (Math.random() > 0.5)
-	{
-		lane = Math.floor(Math.random() * 2);
-		addModel(true, lanes[lane]);
-	}
+	// if (Math.random() > 0.5)
+	// {
+	//   lane = Math.floor(Math.random() * 2);
+	//   addModel(true, lanes[lane]);
+	// }
 }
 
 //calls for the addModel function for all models
 function addWorldModels()
 {
-	var numModels = 12;
+	var numModels = 72;
 	var gap = 6.28 / numModels;
 	for (var i = 0; i < numModels; i++)
 	{
@@ -156,12 +156,12 @@ function addModel(inPath, row, isLeft)
 		if (isLeft)
 		{
 			//natuurlijke buiging aan de boom meegeven
-			forestAreaAngle = 1.68 + Math.random() * 0.005;
+			forestAreaAngle = 1.68;
 		}
 		else
 		{
 			//natuurlijke buiging aan de boom meegeven
-			forestAreaAngle = 1.46 - Math.random() * 0.005;
+			forestAreaAngle = 1.46;
 		}
 		sphericalHelper.set(worldRadius - 0.3, forestAreaAngle, row);
 	}
@@ -170,7 +170,7 @@ function addModel(inPath, row, isLeft)
 	var rollingGroundVector = rollingGroundSphere.position.clone().normalize();
 	var collisionVector = newModel.position.clone().normalize();
 	newModel.quaternion.setFromUnitVectors(collisionVector, rollingGroundVector);
-	newModel.rotation.x += (Math.random() * (2 * Math.PI / 10)) + -Math.PI / 10;
+	newModel.rotation.y += (Math.random() * (2 * Math.PI / 10)) + -Math.PI / 10;
 	rollingGroundSphere.add(newModel);
 }
 
