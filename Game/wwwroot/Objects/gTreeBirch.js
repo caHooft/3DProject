@@ -26,7 +26,7 @@ class gTreeBirch extends THREE.Group
 
 		mtlLoader.setTexturePath('/Resources/Trees/birchtree/');
 		mtlLoader.setPath('/Resources/Trees/birchtree/');
-		mtlLoader.load('birhc_tree.mtl', function (materials)
+		mtlLoader.load('birch_tree.mtl', function (materials)
 		{
 			materials.preload();
 			var objLoader = new THREE.OBJLoader();

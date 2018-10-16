@@ -81,7 +81,7 @@ function createModel(index)
       break;
 
     case 10:
-      var r = Math.random();
+      // var r = Math.random();
       // if (r <= 0.25)
       // {
       //   model = new gTree;
@@ -90,15 +90,16 @@ function createModel(index)
       // {
       //   model = new gTreeBirch;
       // }
-      if (r > 0.5 && r <= 0.75)
-      {
-        model = new gTreeNeedle;
-      }
-    // else if (r > 0.75)
-    // {
-    //   model = new gTreeOak;
-    // }
-    // break;
+      // else if (r > 0.5 && r <= 0.75)
+      // {
+      //   model = new gTreeNeedle;
+      // }
+      // else if (r > 0.75)
+      // {
+      //   model = new gTreeOak;
+      // }
+      model = new gTreeBirch;
+      break;
 
     default:
       break;
