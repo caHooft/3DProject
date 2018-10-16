@@ -23,7 +23,7 @@ function addWorld()
 	var sides = 40;
 	var tiers = 40;
 	var sphereGeometry = new THREE.SphereGeometry(worldRadius, sides, tiers);
-	var sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xfffafa, shading: THREE.FlatShading })
+	var sphereMaterial = new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("Resources/Grass/grass.jpg"), shading: THREE.FlatShading })
 	var vertexIndex;
 	var vertexVector = new THREE.Vector3();
 	var nextVertexVector = new THREE.Vector3();
