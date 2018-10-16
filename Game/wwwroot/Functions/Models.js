@@ -125,8 +125,8 @@ function addPath()
 //calls for the addModel function for all models
 function addWorldModels()
 {
-	var numModels = 36;
-	var gap = 6.28 / 36;
+	var numModels = 72;
+	var gap = 6.28 / numModels;
 	for (var i = 0; i < numModels; i++)
 	{
 		addModel(false, i * gap, true);
@@ -156,12 +156,12 @@ function addModel(inPath, row, isLeft)
 		if (isLeft)
 		{
 			//natuurlijke buiging aan de boom meegeven
-			forestAreaAngle = 1.68 + Math.random() * 0.1;
+			forestAreaAngle = 1.68 + Math.random() * 0.005;
 		}
 		else
 		{
 			//natuurlijke buiging aan de boom meegeven
-			forestAreaAngle = 1.46 - Math.random() * 0.1;
+			forestAreaAngle = 1.46 - Math.random() * 0.005;
 		}
 		sphericalHelper.set(worldRadius - 0.3, forestAreaAngle, row);
 	}
