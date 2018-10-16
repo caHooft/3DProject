@@ -19,7 +19,7 @@ function update()
 			//stats.update();
 			//animate
 			rollingGroundSphere.rotation.x += rollingSpeed;
-			heroSphere.rotation.x -= heroRollingSpeed;
+			//heroSphere.rotation.x -= heroRollingSpeed;
 			cubeSkybox.rotation.x = rollingGroundSphere.rotation.x;
 			if (heroSphere.position.y <= heroBaseY)
 			{
