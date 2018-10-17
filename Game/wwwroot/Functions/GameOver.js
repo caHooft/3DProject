@@ -13,7 +13,7 @@ function gameOver()
 		gameOverText.setAttribute("id", "gameOverText");
 		document.body.appendChild(gameOverText);
 		gameOverNode = document.getElementById("gameOverText");
-		console.log(gameOverNode);
+		//console.log(gameOverNode);
 	}
 
 	else

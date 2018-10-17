@@ -37,6 +37,7 @@ class gDilophosaurus extends THREE.Group
 			{
 				object.receiveShadow = false;
 				object.castShadow = true;
+				selfRef.name = "gDilophosaurus";
 				selfRef.add(object);
 			}
 			);

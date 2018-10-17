@@ -38,6 +38,7 @@ class gRaptor extends THREE.Group
 				object.receiveShadow = true;
 				object.castShadow = true;
 				object.scale.set(0.25, 0.25, 0.25);
+				selfRef.name = "gRaptor";
 				selfRef.add(object);
 			}
 			);

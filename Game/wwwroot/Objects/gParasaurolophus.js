@@ -37,6 +37,7 @@ class gParasaurolophus extends THREE.Group
 			{
 				object.receiveShadow = false;
 				object.castShadow = true;
+				selfRef.name = "gParasaurolophus";
 				selfRef.add(object);
 			}
 			);

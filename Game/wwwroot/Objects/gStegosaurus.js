@@ -37,6 +37,7 @@ class gStegosaurus extends THREE.Group
 			{
 				object.receiveShadow = false;
 				object.castShadow = true;
+				selfRef.name = "gStegosaurus";
 				selfRef.add(object);
 			}
 			);

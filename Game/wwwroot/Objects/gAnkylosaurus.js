@@ -37,6 +37,7 @@ class gAnkylosaurus extends THREE.Group
 			{
 				object.receiveShadow = false;
 				object.castShadow = true;
+				selfRef.name = "gAnkylosaurus";
 				selfRef.add(object);
 			}
 			);

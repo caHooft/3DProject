@@ -37,6 +37,7 @@ class gGallimimus extends THREE.Group
 			{
 				object.receiveShadow = true;
 				object.castShadow = true;
+				selfRef.name = "gGallimimus";
 				selfRef.add(object);
 			}
 			);

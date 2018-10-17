@@ -37,6 +37,7 @@ class gTRex extends THREE.Group
 			{
 				object.receiveShadow = true;
 				object.castShadow = true;
+				selfRef.name = "gTRex";
 				selfRef.add(object);
 			}
 			);

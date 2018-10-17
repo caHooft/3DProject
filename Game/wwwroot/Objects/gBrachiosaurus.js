@@ -37,6 +37,7 @@ class gBrachiosaurus extends THREE.Group
 			{
 				object.receiveShadow = false;
 				object.castShadow = true;
+				selfRef.name = "gBrachiosaurus";
 				selfRef.add(object);
 			}
 			);
