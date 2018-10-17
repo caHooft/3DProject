@@ -18,6 +18,7 @@ function createScene()
   // renderer.setClearColor(0xfffafa, 1);
   renderer.shadowMap.enabled = true;//enable shadow
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(sceneWidth, sceneHeight);
   dom = document.getElementById('TutContainer');
   dom.appendChild(renderer.domElement);
