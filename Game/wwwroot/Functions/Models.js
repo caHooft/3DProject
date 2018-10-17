@@ -141,8 +141,7 @@ function addModel(inPath, row, isLeft)
   if (inPath)
   {
     if (modelPool.length == 0) return;
-    //newModel = modelPool.pop(); // goves 2-3 models infinetly
-    newModel = modelPool.shift(); //shows many models than stops
+    newModel = modelPool.shift();
     modelPool.push(createModel(Math.floor(Math.random() * 10)));
     newModel.visible = true;
     console.log("add model");
