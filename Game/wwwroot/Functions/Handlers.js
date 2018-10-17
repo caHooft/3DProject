@@ -6,43 +6,13 @@ function doWebThings(event)
 	{
 		if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0)
 		{
-			if (command.parameters.type == "trike")
+			if (command.parameters.type == "")
 			{
 				console.log(command);
-				trike = new gTriceratops();
+				vari = new null();
 
 				var group = new THREE.Group();
-				group.add(trike);
-
-				scene.add(group);
-				worldObjects[command.parameters.guid] = group;
-			}
-		}
-
-		if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0)
-		{
-			if (command.parameters.type == "trex")
-			{
-				console.log(command);
-				trex = new gTRex();
-
-				var group = new THREE.Group();
-				group.add(trex);
-
-				scene.add(group);
-				worldObjects[command.parameters.guid] = group;
-			}
-		}
-
-		if (Object.keys(worldObjects).indexOf(command.parameters.guid) < 0)
-		{
-			if (command.parameters.type == "steg")
-			{
-				console.log(command);
-				steg = new gStegosaurus();
-
-				var group = new THREE.Group();
-				group.add(steg);
+				group.add(vari);
 
 				scene.add(group);
 				worldObjects[command.parameters.guid] = group;
