@@ -124,7 +124,7 @@ function addPath()
 //calls for the addModel function for all models
 function addWorldModels()
 {
-  var numModels = 144;
+  var numModels = 72;
   var gap = 6.28 / 16;
   for (var i = 0; i < numModels; i++)
   {
