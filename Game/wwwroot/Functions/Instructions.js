@@ -5,10 +5,11 @@ function Instructions()
 	{
 		var instructionText = document.createElement('div');
 		instructionText.style.position = 'absolute';
-		instructionText.innerHTML = "Up = Jump <br> Left / Right = Move <br> Press Space to Start";
+		instructionText.innerHTML = "W = Jump <br> A / D = Move <br> Press Space to Start <br> Press R to restart";
 		instructionText.style.top = sceneHeight / 2 - 100 + 'px';
 		instructionText.style.left = sceneWidth / 2 - 200 + 'px';
 		instructionText.style.fontSize = 50 + 'px'
+		instructionText.align = "center";
 		instructionText.setAttribute("id", "instructionText");
 		document.body.appendChild(instructionText);
 		instructionNode = document.getElementById("instructionText");
