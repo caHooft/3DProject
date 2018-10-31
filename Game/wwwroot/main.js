@@ -70,19 +70,19 @@ window.onload = function ()
 	crashSound = new Audio("43607__freqman__sandbag.wav");
 	pauseSound = new Audio("Pause_Sound.mp3");
 
-	// if (typeof themeMusic.loop == 'boolean')
-	// {
-	// 	themeMusic.loop = true;
-	// }
-	// else
-	// {
-	// 	themeMusic.addEventListener('ended', function ()
-	// 	{
-	// 		this.currentTime = 0;
-	// 		this.play();
-	// 	}, false);
-	// }
-	// themeMusic.play();
+	if (typeof themeMusic.loop == 'boolean')
+	{
+		themeMusic.loop = true;
+	}
+	else
+	{
+		themeMusic.addEventListener('ended', function ()
+		{
+			this.currentTime = 0;
+			this.play();
+		}, false);
+	}
+	themeMusic.play();
 
 	var worldObjects = {};
 
