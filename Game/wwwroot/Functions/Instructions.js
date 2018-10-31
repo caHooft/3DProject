@@ -5,19 +5,16 @@ function instructions()
 	{
 		var instructionText = document.createElement('div');
 		instructionText.style.position = 'absolute';
-		instructionText.innerHTML = "Up/W: Jump <br> Left/A Right/D: Move <br> Space: Start <br> R: Restart <br> P: Pause";
-		instructionText.style.top = sceneHeight / 2 - 250 + 'px';
-		instructionText.style.left = sceneWidth / 2 - 130 + 'px';
+		instructionText.innerHTML = "Up/W: Jump <br> \< / A , \> / D: Move <br> Space: Start <br> R: Restart <br> P: Pause";
+		instructionText.style.top = "20%";
+		instructionText.style.bottom = '0%';
+		instructionText.style.left = '0%';
+		instructionText.style.right = '0%';
+		instructionText.style.margin = "auto";
 		instructionText.style.fontSize = 50 + 'px'
-		instructionText.align = "center";
+		instructionText.align = "middle";
 		instructionText.setAttribute("id", "instructionText");
 		document.body.appendChild(instructionText);
 		instructionNode = document.getElementById("instructionText");
-		console.log(instructionNode);
-	}
-	else
-	{
-		instructionNode.style.top = sceneHeight / 2 - instructionNode.style.height / 2 - 250 + 'px';
-		instructionNode.style.left = sceneWidth / 2 - instructionNode.style.width / 2 - 130 + 'px';
 	}
 }
