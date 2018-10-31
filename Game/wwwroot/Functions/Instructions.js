@@ -5,7 +5,7 @@ function instructions()
 	{
 		var instructionText = document.createElement('div');
 		instructionText.style.position = 'absolute';
-		instructionText.innerHTML = "W: Jump <br> A D: Move <br> Space: Start <br> R: Restart <br> P: Pause";
+		instructionText.innerHTML = "Up/W: Jump <br> Left/A Right/D: Move <br> Space: Start <br> R: Restart <br> P: Pause";
 		instructionText.style.top = sceneHeight / 2 - 250 + 'px';
 		instructionText.style.left = sceneWidth / 2 - 130 + 'px';
 		instructionText.style.fontSize = 50 + 'px'
