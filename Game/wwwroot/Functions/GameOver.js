@@ -5,7 +5,7 @@ function gameOver()
 		var gameOverText = document.createElement('div');
 		gameOverText.style.position = 'absolute';
 		gameOverText.innerHTML = "Game Over! Your score is: " + score + "<br> Press R to restart";
-		gameOverText.style.top = "20%";
+		gameOverText.style.top = '20%';
 		gameOverText.style.bottom = '0%';
 		gameOverText.style.left = '0%';
 		gameOverText.style.right = '0%';
