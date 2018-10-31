@@ -220,7 +220,6 @@ function addModel(inPath, row, isLeft)
   var collisionVector = newModel.position.clone().normalize();
   newModel.quaternion.setFromUnitVectors(collisionVector, rollingGroundVector);
   newModel.rotation.y += (Math.random() * (2 * Math.PI / 25)) + -Math.PI / 25;
-  //newModel.rotation.y = 0;
   rollingGroundSphere.add(newModel);
 }
 
