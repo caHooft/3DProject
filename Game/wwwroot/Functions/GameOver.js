@@ -16,3 +16,4 @@ function gameOver()
 		document.body.appendChild(gameOverText);
 		gameOverNode = document.getElementById("gameOverText");
 	}
+}
