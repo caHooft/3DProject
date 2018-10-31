@@ -36,7 +36,7 @@ var jumping;
 var releaseInterval = 0.5;
 var lastReleaseTime = 0;
 var particleGeometry;
-var particleCount = 20;
+var particleCount = 50;
 var explosionPower = 1.06;
 var particles;
 //var stats;
@@ -49,9 +49,11 @@ var startGame = false;
 var gameOverCalled = false;
 var instructionNode;
 var gameOverNode;
-
+var pauseNode;
+var paused = false;
 var themeMusic;
 var crashSound;
+var pauseSound;
 
 function parseCommand(input = "")
 {
@@ -66,6 +68,7 @@ window.onload = function ()
 
 	themeMusic = new Audio("Puzzle-Dreams.mp3")
 	crashSound = new Audio("43607__freqman__sandbag.wav");
+	pauseSound = new Audio("Pause_Sound.mp3");
 
 	// if (typeof themeMusic.loop == 'boolean')
 	// {

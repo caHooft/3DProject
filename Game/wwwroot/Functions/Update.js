@@ -4,7 +4,12 @@ function update()
 	//Displays instructions until space is pressed
 	if (!startGame)
 	{
-		Instructions();
+		instructions();
+		pause();
+	}
+	else if (paused)
+	{
+		pauseNode.innerHTML = "Paused";
 	}
 	else
 	{
@@ -16,6 +21,7 @@ function update()
 		}
 		else
 		{
+			pauseNode.innerHTML = "";
 			//stats.update();
 			//animate
 			rollingGroundSphere.rotation.x += rollingSpeed;

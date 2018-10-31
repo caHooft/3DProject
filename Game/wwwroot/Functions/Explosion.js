@@ -7,8 +7,8 @@ function addExplosion()
 		particleGeometry.vertices.push(vertex);
 	}
 	var pMaterial = new THREE.ParticleBasicMaterial({
-		color: 0xfffafa,
-		size: 0.2
+		color: 0xFFFFFF,
+		size: 0.1
 	});
 	particles = new THREE.Points(particleGeometry, pMaterial);
 	scene.add(particles);

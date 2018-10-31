@@ -44,6 +44,20 @@ function handleKeyDown(keyEvent)
 	{
 		window.location.reload();
 	}
+	if (keyEvent.keyCode == 80)
+	{
+		pauseSound.pause();
+		pauseSound.currentTime = 0;
+		pauseSound.play();
+		if (paused)
+		{
+			paused = false;
+		}
+		else
+		{
+			paused = true;
+		}
+	}
 	if (startGame)
 	{
 		if (keyEvent.keyCode === 37 || keyEvent.keyCode === 65)
