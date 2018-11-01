@@ -1,11 +1,11 @@
 const LoadStates = Object.freeze
-  (
-  {
-    "NOT_LOADING": 1,
-    "LOADING": 2,
-    "LOADED": 3
-  }
-  );
+	(
+	{
+		"NOT_LOADING": 1,
+		"LOADING": 2,
+		"LOADED": 3
+	}
+	);
 
 var sceneWidth;
 var sceneHeight;
@@ -57,63 +57,63 @@ var pauseSound;
 
 function parseCommand(input = "")
 {
-  return JSON.parse(input);
+	return JSON.parse(input);
 }
 
 window.onload = function ()
 {
 
-  var camera, scene, renderer;
-  var cameraControls;
+	var camera, scene, renderer;
+	var cameraControls;
 
-  themeMusic = new Audio("Puzzle-Dreams.mp3")
-  crashSound = new Audio("43607__freqman__sandbag.wav");
-  pauseSound = new Audio("Pause_Sound.mp3");
+	themeMusic = new Audio("Puzzle-Dreams.mp3")
+	crashSound = new Audio("43607__freqman__sandbag.wav");
+	pauseSound = new Audio("Pause_Sound.mp3");
 
-  if (typeof themeMusic.loop == 'boolean')
-  {
-    themeMusic.loop = true;
-  }
-  else
-  {
-    themeMusic.addEventListener('ended', function ()
-    {
-      this.currentTime = 0;
-      this.play();
-    }, false);
-  }
-  //themeMusic.play();
+	if (typeof themeMusic.loop == 'boolean')
+	{
+		themeMusic.loop = true;
+	}
+	else
+	{
+		themeMusic.addEventListener('ended', function ()
+		{
+			this.currentTime = 0;
+			this.play();
+		}, false);
+	}
+	// themeMusic.play();
 
-  var worldObjects = {};
+	var worldObjects = {};
 
-  function init()
-  {
-    // set up the scene
-    createScene(); // Runs from external file
+	function init()
+	{
+		// set up the scene
+		createScene(); // Runs from external file
 
-    //call game loop
-    update();
-  }
+		//call game loop
+		update();
+	}
 
-  webSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
-  webSocket.onmessage = function (event) { doWebThings(event) }
-  // webSocket.onmessage = doWebThings(event)
+	webSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
+	webSocket.onmessage = function (event) { doWebThings(event) }
+	// webSocket.onmessage = doWebThings(event)
 
-  init();
-  // animate();
+	init();
+	// animate();
 }
 
 Element.prototype.remove = function ()
 {
-  this.parentElement.removeChild(this);
+	this.parentElement.removeChild(this);
 }
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function ()
 {
-  for (var i = this.length - 1; i >= 0; i--)
-  {
-    if (this[i] && this[i].parentElement)
-    {
-      this[i].parentElement.removeChild(this[i]);
-    }
-  }
+	for (var i = this.length - 1; i >= 0; i--)
+	{
+		if (this[i] && this[i].parentElement)
+		{
+			this[i].parentElement.removeChild(this[i]);
+		}
+	}
 }
