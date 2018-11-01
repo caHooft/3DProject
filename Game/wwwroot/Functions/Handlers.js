@@ -58,7 +58,7 @@ function handleKeyDown(keyEvent)
 			paused = true;
 		}
 	}
-	if (startGame)
+	if (startGame && !paused)
 	{
 		if (keyEvent.keyCode === 37 || keyEvent.keyCode === 65)
 		{//left
