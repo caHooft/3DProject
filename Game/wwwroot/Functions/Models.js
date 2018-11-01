@@ -25,7 +25,6 @@ function shuffle(array)
 function createModelPool()
 {
 	var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-	var ids = [];
 	arr = shuffle(arr);
 	var newModel;
 	for (var i = 0; i < arr.length; i++)
@@ -108,25 +107,19 @@ function createModel(index)
 }
 
 //determines which lanes will have an obstacle
-//0.5 chance for obstacles in 2 lanes in one segment
 function addPath()
 {
 	var lanes = [0, 1, 2];
 	var lane = Math.floor(Math.random() * 3);
 	addModel(true, lane);
 	lanes.splice(lane, 1);
-	// if (Math.random() > 0.5)
-	// {
-	//   lane = Math.floor(Math.random() * 2);
-	//   addModel(true, lanes[lane]);
-	// }
 }
 
 //calls for the addModel function for all models
 function addWorldModels()
 {
 	var numModels = 72;
-	var gap = 6.28 / 16;
+	var gap = 6.28 / 36;
 	for (var i = 0; i < numModels; i++)
 	{
 		addModel(false, i * gap, true);
