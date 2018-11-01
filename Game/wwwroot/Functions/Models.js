@@ -126,7 +126,7 @@ function addPath()
 function addWorldModels()
 {
   var numModels = 72;
-  var gap = 6.28 / 16;
+  var gap = 6.28 / 36;
   for (var i = 0; i < numModels; i++)
   {
     addModel(false, i * gap, true);
