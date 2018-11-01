@@ -55,13 +55,13 @@ function addWorld()
       sphereGeometry.vertices[i + vertexIndex] = (vertexVector.add(offset));
     }
   }
-  rollingGroundSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-  rollingGroundSphere.receiveShadow = true;
-  rollingGroundSphere.castShadow = false;
-  rollingGroundSphere.rotation.z = -Math.PI / 2;
-  scene.add(rollingGroundSphere);
-  rollingGroundSphere.position.y = -24;
-  rollingGroundSphere.position.z = 2;
+  planet = new THREE.Mesh(sphereGeometry, sphereMaterial);
+  planet.receiveShadow = true;
+  planet.castShadow = false;
+  planet.rotation.z = -Math.PI / 2;
+  scene.add(planet);
+  planet.position.y = -24;
+  planet.position.z = 2;
   addWorldModels();
 }
 

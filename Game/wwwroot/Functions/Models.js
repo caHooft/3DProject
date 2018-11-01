@@ -127,7 +127,7 @@ function addWorldModels()
   }
 }
 
-//adds a model to the rollingGroundSphere using a sphericalhelper to find the edge of the sphere
+//adds a model to the planet using a sphericalhelper to find the edge of the sphere
 function addModel(inPath, row, isLeft)
 {
   var newModel;
@@ -141,7 +141,7 @@ function addModel(inPath, row, isLeft)
     newModel.visible = true;
     //console.log("add model");
     dinosInPath.push(newModel);
-    sphericalHelper.set(worldRadius - 0.3, pathAngleValues[row], -rollingGroundSphere.rotation.x + 4);
+    sphericalHelper.set(worldRadius - 0.3, pathAngleValues[row], -planet.rotation.x + 4);
   }
   else  
   {
@@ -162,11 +162,11 @@ function addModel(inPath, row, isLeft)
   }
 
   newModel.position.setFromSpherical(sphericalHelper);
-  var rollingGroundVector = rollingGroundSphere.position.clone().normalize();
+  var rollingGroundVector = planet.position.clone().normalize();
   var collisionVector = newModel.position.clone().normalize();
   newModel.quaternion.setFromUnitVectors(collisionVector, rollingGroundVector);
   //newModel.rotation.y += (Math.random() * (2 * Math.PI / 25)) + -Math.PI / 25;
-  rollingGroundSphere.add(newModel);
+  planet.add(newModel);
 }
 
 //handles the collision and collision effects

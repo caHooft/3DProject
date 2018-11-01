@@ -24,9 +24,9 @@ function update()
       pauseNode.innerHTML = "";
       //stats.update();
       //animate
-      rollingGroundSphere.rotation.x += rollingSpeed;
+      planet.rotation.x += rollingSpeed;
       //player.rotation.x -= heroRollingSpeed;
-      cubeSkybox.rotation.x = rollingGroundSphere.rotation.x;
+      cubeSkybox.rotation.x = planet.rotation.x;
       if (player.position.y <= heroBaseY)
       {
         jumping = false;

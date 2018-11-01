@@ -15,7 +15,7 @@ var renderer;
 var dom;
 var sun;
 var ground;
-var rollingGroundSphere;
+var planet;
 var player;
 var rollingSpeed = 0.008;
 var heroRollingSpeed;
