@@ -1,11 +1,11 @@
 const LoadStates = Object.freeze
-	(
-	{
-		"NOT_LOADING": 1,
-		"LOADING": 2,
-		"LOADED": 3
-	}
-	);
+  (
+  {
+    "NOT_LOADING": 1,
+    "LOADING": 2,
+    "LOADED": 3
+  }
+  );
 
 var sceneWidth;
 var sceneHeight;
@@ -15,7 +15,6 @@ var renderer;
 var dom;
 var sun;
 var ground;
-//var orbitControl;
 var rollingGroundSphere;
 var heroSphere;
 var rollingSpeed = 0.008;
@@ -39,7 +38,6 @@ var particleGeometry;
 var particleCount = 50;
 var explosionPower = 1.06;
 var particles;
-//var stats;
 var scoreText;
 var score;
 var hasCollided;
@@ -57,63 +55,59 @@ var pauseSound;
 
 function parseCommand(input = "")
 {
-	return JSON.parse(input);
+  return JSON.parse(input);
 }
 
 window.onload = function ()
 {
+  themeMusic = new Audio("Puzzle-Dreams.mp3")
+  crashSound = new Audio("43607__freqman__sandbag.wav");
+  pauseSound = new Audio("Pause_Sound.mp3");
 
-	var camera, scene, renderer;
-	var cameraControls;
+  if (typeof themeMusic.loop == 'boolean')
+  {
+    themeMusic.loop = true;
+  }
+  else
+  {
+    themeMusic.addEventListener('ended', function ()
+    {
+      this.currentTime = 0;
+      this.play();
+    }, false);
+  }
+  // themeMusic.play();
 
-	themeMusic = new Audio("Puzzle-Dreams.mp3")
-	crashSound = new Audio("43607__freqman__sandbag.wav");
-	pauseSound = new Audio("Pause_Sound.mp3");
+  var worldObjects = {};
 
-	if (typeof themeMusic.loop == 'boolean')
-	{
-		themeMusic.loop = true;
-	}
-	else
-	{
-		themeMusic.addEventListener('ended', function ()
-		{
-			this.currentTime = 0;
-			this.play();
-		}, false);
-	}
-	// themeMusic.play();
+  function init()
+  {
+    // set up the scene
+    createScene(); // Runs from external file
 
-	var worldObjects = {};
+    //call game loop
+    update();
+  }
 
-	function init()
-	{
-		// set up the scene
-		createScene(); // Runs from external file
+  webSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
+  webSocket.onmessage = function (event) { doWebThings(event) }
+  // webSocket.onmessage = doWebThings(event)
 
-		//call game loop
-		update();
-	}
-
-	webSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
-	webSocket.onmessage = function (event) { doWebThings(event) }
-	// webSocket.onmessage = doWebThings(event)
-
-	init();
-	// animate();
+  init();
+  // animate();
 }
 
 Element.prototype.remove = function ()
 {
-	this.parentElement.removeChild(this);
+  this.parentElement.removeChild(this);
 }
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function ()
 {
-	for (var i = this.length - 1; i >= 0; i--)
-	{
-		if (this[i] && this[i].parentElement)
-		{
-			this[i].parentElement.removeChild(this[i]);
-		}
-	}
+  for (var i = this.length - 1; i >= 0; i--)
+  {
+    if (this[i] && this[i].parentElement)
+    {
+      this[i].parentElement.removeChild(this[i]);
+    }
+  }
 }
