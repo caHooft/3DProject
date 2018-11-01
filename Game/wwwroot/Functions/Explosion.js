@@ -39,7 +39,7 @@ function explode()
 {
   particles.position.y = 2;
   particles.position.z = 4.8;
-  particles.position.x = heroSphere.position.x;
+  particles.position.x = player.position.x;
 
   crashSound.play();
 

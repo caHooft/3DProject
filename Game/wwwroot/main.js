@@ -16,7 +16,7 @@ var dom;
 var sun;
 var ground;
 var rollingGroundSphere;
-var heroSphere;
+var player;
 var rollingSpeed = 0.008;
 var heroRollingSpeed;
 var worldRadius = 26;

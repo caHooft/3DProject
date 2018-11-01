@@ -1,16 +1,16 @@
 function addHero()
 {
   jumping = false;
-  heroSphere = new gRaptor();
+  player = new gRaptor();
 
-  heroSphere.rotation.y = (180 * Math.PI / 180);
-  heroSphere.receiveShadow = true;
-  heroSphere.castShadow = true;
-  scene.add(heroSphere);
-  heroSphere.position.y = heroBaseY;
-  heroSphere.position.z = 4.8;
+  player.rotation.y = (180 * Math.PI / 180);
+  player.receiveShadow = true;
+  player.castShadow = true;
+  scene.add(player);
+  player.position.y = heroBaseY;
+  player.position.z = 4.8;
   currentLane = middleLane;
-  heroSphere.position.x = currentLane;
+  player.position.x = currentLane;
 }
 
 function addWorld()
