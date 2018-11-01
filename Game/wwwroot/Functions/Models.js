@@ -25,7 +25,6 @@ function shuffle(array)
 function createModelPool()
 {
   var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  var ids = [];
   arr = shuffle(arr);
   var newModel;
   for (var i = 0; i < arr.length; i++)
@@ -79,7 +78,6 @@ function createModel(index)
     case 9:
       model = new gTriceratops;
       break;
-
     case 10:
       // var r = Math.random();
       // if (r <= 0.25)
@@ -100,7 +98,6 @@ function createModel(index)
       // }
       // model = new gTreeNeedle;
       break;
-
     default:
       break;
   }
@@ -108,18 +105,12 @@ function createModel(index)
 }
 
 //determines which lanes will have an obstacle
-//0.5 chance for obstacles in 2 lanes in one segment
 function addPath()
 {
   var lanes = [0, 1, 2];
   var lane = Math.floor(Math.random() * 3);
   addModel(true, lane);
   lanes.splice(lane, 1);
-  // if (Math.random() > 0.5)
-  // {
-  //   lane = Math.floor(Math.random() * 2);
-  //   addModel(true, lanes[lane]);
-  // }
 }
 
 //calls for the addModel function for all models
