@@ -202,10 +202,10 @@ function modelManagement()
 				// 	console.log("gAnkylosaurus");
 				// 	break;
 
-				case "gBrachiosaurus":
-					console.log("gBrachiosaurus");
-					vectors.push()
-					break;
+				// case "gBrachiosaurus":
+				// 	console.log("gBrachiosaurus");
+				// 	vectors.push();
+				// 	break;
 
 				// case "gDilophosaurus":
 				// 	console.log("gDilophosaurus");
