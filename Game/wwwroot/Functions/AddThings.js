@@ -7,7 +7,7 @@ function addHero()
   player.receiveShadow = true;
   player.castShadow = true;
   scene.add(player);
-  player.position.y = heroBaseY;
+  player.position.y = playerBase;
   player.position.z = 4.8;
   currentLane = middleLane;
   player.position.x = currentLane;

@@ -6,7 +6,7 @@ function createScene()
   modelPool = [];
   clock = new THREE.Clock();
   clock.start();
-  heroRollingSpeed = (rollingSpeed * worldRadius / heroRadius) / 5;
+  playerRollingSpeed = (rollingSpeed * worldRadius / playerRadius) / 5;
   sphericalHelper = new THREE.Spherical();
   pathAngleValues = [1.52, 1.57, 1.62];
   sceneWidth = window.innerWidth;

@@ -7,7 +7,6 @@ function shuffle(array)
   // While there remain elements to shuffle...
   while (0 !== currentIndex)
   {
-
     // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
@@ -42,68 +41,69 @@ function createModel(index)
   switch (index)
   {
     case 0:
-      model = new gAllosaurus;
-      break;
+      {
+        model = new gAllosaurus;
+        break;
+      }
 
     case 1:
-      model = new gAnkylosaurus;
-      break;
+      {
+        model = new gAnkylosaurus;
+        break;
+      }
 
     case 2:
-      model = new gBrachiosaurus;
-      break;
+      {
+        model = new gBrachiosaurus;
+        break;
+      }
 
     case 3:
-      model = new gDilophosaurus;
-      break;
+      {
+        model = new gDilophosaurus;
+        break;
+      }
 
     case 4:
-      model = new gGallimimus;
-      break;
+      {
+        model = new gGallimimus;
+        break;
+      }
 
     case 5:
-      model = new gParasaurolophus;
-      break;
+      {
+        model = new gParasaurolophus;
+        break;
+      }
 
     case 6:
-      model = new gSpinosaurus;
-      break;
+      {
+        model = new gSpinosaurus;
+        break;
+      }
 
     case 7:
-      model = new gStegosaurus;
-      break;
+      {
+        model = new gStegosaurus;
+        break;
+      }
 
     case 8:
-      model = new gTRex;
-      break;
+      {
+        model = new gTRex;
+        break;
+      }
 
     case 9:
-      model = new gTriceratops;
-      break;
-
-    case 10:
-      // var r = Math.random();
-      // if (r <= 0.25)
-      // {
-      //   model = new gTree;
-      // }
-      // else if (r > 0.25 && r <= 0.5)
-      // {
-      //   model = new gTreeBirch;
-      // }
-      // else if (r > 0.5 && r <= 0.75)
-      // {
-      //   model = new gTreeNeedle;
-      // }
-      // else if (r > 0.75)
-      // {
-      //   model = new gTreeOak;
-      // }
-      // model = new gTreeNeedle;
-      break;
+      {
+        model = new gTriceratops;
+        break;
+      }
 
     default:
-      break;
+      {
+        break;
+      }
   }
   return model;
 }
@@ -124,7 +124,11 @@ function addModel(inPath, row, isLeft)
 
   if (inPath)
   {
-    if (modelPool.length == 0) return;
+    if (modelPool.length == 0)
+    {
+      return;
+    }
+
     newModel = modelPool.shift();
     var r = Math.floor(Math.random() * 10);
     modelPool.push(createModel(r));
@@ -133,6 +137,7 @@ function addModel(inPath, row, isLeft)
     dinosInPath.push(newModel);
     sphericalHelper.set(worldRadius - 0.3, pathAngleValues[row], -planet.rotation.x + 4);
   }
+
   else  
   {
     return;
@@ -156,10 +161,13 @@ function modelManagement()
   {
     obstacle = dinosInPath[index];
     modelPos.setFromMatrixPosition(obstacle.matrixWorld);
+
     if (modelPos.z > 6 && obstacle.visible)
     {//gone out of our view zone
       modelsToRemove.push(obstacle);
-    } else
+    }
+
+    else
     {//check collision
       var vectors = new Array();
       switch (obstacle.name)
@@ -221,7 +229,9 @@ function modelManagement()
       }
     }
   });
+
   var fromWhere;
+
   modelsToRemove.forEach(function (element, index)
   {
     obstacle = modelsToRemove[index];

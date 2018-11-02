@@ -12,43 +12,51 @@ var sceneHeight;
 var camera;
 var scene;
 var renderer;
-var dom;
 var sun;
+var exampleSocket;
+var worldObjects = {};
+
 var ground;
 var planet;
-var player;
 var rollingSpeed = 0.008;
-var heroRollingSpeed;
 var worldRadius = 26;
-var heroRadius = 0.2;
+
+var player;
+var playerRollingSpeed;
+var playerRadius = 0.2;
+var playerBase = 1.8;
+var bounceValue = 0.1;
+var jumping;
+var gravity = 0.005;
+
 var sphericalHelper;
 var pathAngleValues;
-var heroBaseY = 1.8;
-var bounceValue = 0.1;
-var gravity = 0.005;
+
 var leftLane = -1;
 var rightLane = 1;
 var middleLane = 0;
 var currentLane;
 var clock;
-var jumping;
+
 var releaseInterval = 0.5;
 var lastReleaseTime = 0;
+
+var hasCollided;
 var particleGeometry;
 var particleCount = 50;
 var explosionPower = 1.06;
 var particles;
+var gameOverCalled = false;
+var gameOverNode;
+
 var scoreText;
 var score;
-var hasCollided;
-var exampleSocket;
-var worldObjects = {};
+
 var startGame = false;
-var gameOverCalled = false;
 var instructionNode;
-var gameOverNode;
 var pauseNode;
 var paused = false;
+
 var themeMusic;
 var crashSound;
 var pauseSound;
@@ -77,8 +85,6 @@ window.onload = function ()
     }, false);
   }
   // themeMusic.play();
-
-  var worldObjects = {};
 
   function init()
   {

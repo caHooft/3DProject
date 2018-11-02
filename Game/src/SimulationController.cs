@@ -7,64 +7,64 @@ using Views;
 
 namespace Controllers
 {
-	struct ObservingClient
-	{
-		public View currentView;
-		public IDisposable unsubscribe;
-	}
+  struct ObservingClient
+  {
+    public View currentView;
+    public IDisposable unsubscribe;
+  }
 
-	public class SimulationController
-	{
-		private World world;
-		private List<ObservingClient> views = new List<ObservingClient>();
-		private bool running = false;
-		private int tickTime = 50;
+  public class SimulationController
+  {
+    private World world;
+    private List<ObservingClient> views = new List<ObservingClient>();
+    private bool running = false;
+    private int tickTime = 50;
 
-		public SimulationController(World world)
-		{
-			this.world = world;
-		}
+    public SimulationController(World world)
+    {
+      this.world = world;
+    }
 
-		public void AddView(View view)
-		{
-			ObservingClient oc = new ObservingClient();
+    public void AddView(View view)
+    {
+      ObservingClient oc = new ObservingClient();
 
-			oc.unsubscribe = this.world.Subscribe(view);
-			oc.currentView = view;
+      oc.unsubscribe = this.world.Subscribe(view);
+      oc.currentView = view;
 
-			views.Add(oc);
-		}
+      views.Add(oc);
+    }
 
-		public void RemoveView(View view)
-		{
-			for (int i = 0; i < views.Count; i++)
-			{
-				ObservingClient currentOC = views[i];
+    public void RemoveView(View view)
+    {
+      for (int i = 0; i < views.Count; i++)
+      {
+        ObservingClient currentOC = views[i];
 
-				if (currentOC.currentView == view)
-				{
-					views.Remove(currentOC);
-					currentOC.unsubscribe.Dispose();
-				}
-			}
-		}
+        if (currentOC.currentView == view)
+        {
+          views.Remove(currentOC);
+          currentOC.unsubscribe.Dispose();
+        }
+      }
+    }
 
-		public void Simulate()
-		{
-			running = true;
+    public void Simulate()
+    {
+      running = true;
 
-			while (running)
-			{
-			}
+      while (running)
+      {
+      }
 
-			world.Update(tickTime);
-			Thread.Sleep(tickTime);
-		}
+      world.Update(tickTime);
+      Thread.Sleep(tickTime);
+    }
 
 
-		public void EndSimulation()
-		{
-			running = false;
-		}
-	}
+    public void EndSimulation()
+    {
+      running = false;
+    }
+  }
 }

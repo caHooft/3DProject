@@ -25,9 +25,9 @@ function update()
       //stats.update();
       //animate
       planet.rotation.x += rollingSpeed;
-      //player.rotation.x -= heroRollingSpeed;
+      //player.rotation.x -= playerRollingSpeed;
       cubeSkybox.rotation.x = planet.rotation.x;
-      if (player.position.y <= heroBaseY)
+      if (player.position.y <= playerBase)
       {
         jumping = false;
         bounceValue = (Math.random() * 0.04) + 0.005;

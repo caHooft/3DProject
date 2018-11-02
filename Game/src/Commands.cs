@@ -7,41 +7,25 @@ using Newtonsoft.Json;
 namespace Controllers
 {
 
-	public abstract class Command
-	{
+  public abstract class Command
+  {
 
-		private string type;
-		private Object parameters;
+    private string type;
+    private Object parameters;
 
-		public Command(string type, Object parameters)
-		{
-			this.type = type;
-			this.parameters = parameters;
-		}
+    public Command(string type, Object parameters)
+    {
+      this.type = type;
+      this.parameters = parameters;
+    }
 
-		public string ToJson()
-		{
-			return JsonConvert.SerializeObject(new
-			{
-				command = type,
-				parameters = parameters
-			});
-		}
-	}
-
-	public abstract class Model3DCommand : Command
-	{
-
-		public Model3DCommand(string type, Model parameters) : base(type, parameters)
-		{
-		}
-	}
-
-	public class UpdateModel3DCommand : Model3DCommand
-	{
-
-		public UpdateModel3DCommand(Model parameters) : base("update", parameters)
-		{
-		}
-	}
+    public string ToJson()
+    {
+      return JsonConvert.SerializeObject(new
+      {
+        command = type,
+        parameters = parameters
+      });
+    }
+  }
 }
