@@ -37,6 +37,8 @@ function createModelPool()
 //returns model given an index from 0/9
 function createModel(index)
 {
+  console.log(index);
+
   switch (index)
   {
     case 0:
