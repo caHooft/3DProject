@@ -171,11 +171,13 @@ function modelManagement()
 		else
 		{//check collision
 			var vectors = new Array();
-			if (obstacle.children.length <= 1)
+			if (obstacle.children.length < 2)
 			{
 				vectors.push(modelPos);
 				vectors.push(0.6);
-			} else
+			}
+
+			else
 			{
 				for (var i = 0; i < obstacle.children.length - 1; i++)
 				{
@@ -183,18 +185,17 @@ function modelManagement()
 					vectors.push(obstacle.getObjectByName(i.toString()).userData.distance);
 				}
 			}
-		}
 
-		for (var i = 0; i < vectors.length; i += 2)
-		{
-			// console.log(vectors[i]);
-			if (vectors[i].distanceTo(player.position) <= vectors[i + 1])
+			for (var i = 0; i < vectors.length; i += 2)
 			{
-				console.log("hit");
-				console.log(i / 2);
-				hasCollided = true;
-				explode();
-				gameOver();
+				if (vectors[i].distanceTo(player.position) <= vectors[i + 1])
+				{
+					console.log("hit");
+					console.log(i / 2);
+					hasCollided = true;
+					explode();
+					gameOver();
+				}
 			}
 		}
 	}
