@@ -170,7 +170,7 @@ function modelManagement()
 
 		else
 		{//check collision
-			var vectors = new Array();
+			var vectors = [];
 			if (obstacle.children.length < 2)
 			{
 				vectors.push(modelPos);
