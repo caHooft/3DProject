@@ -115,18 +115,6 @@ function addPath()
   lanes.splice(lane, 1);
 }
 
-//calls for the addModel function for all models
-function addWorldModels()
-{
-  var numModels = 72;
-  var gap = 6.28 / 36;
-  for (var i = 0; i < numModels; i++)
-  {
-    addModel(false, i * gap, true);
-    addModel(false, i * gap, false);
-  }
-}
-
 //adds a model to the planet using a sphericalhelper to find the edge of the sphere
 function addModel(inPath, row, isLeft)
 {
@@ -145,20 +133,7 @@ function addModel(inPath, row, isLeft)
   }
   else  
   {
-    //pakt de tree models
-    newModel = createModel(10);
-    var forestAreaAngle = 0;//[1.52,1.57,1.62];
-    if (isLeft)
-    {
-      //natuurlijke buiging aan de boom meegeven
-      forestAreaAngle = 1.68;
-    }
-    else
-    {
-      //natuurlijke buiging aan de boom meegeven
-      forestAreaAngle = 1.46;
-    }
-    sphericalHelper.set(worldRadius - 0.3, forestAreaAngle, row);
+    return;
   }
 
   newModel.position.setFromSpherical(sphericalHelper);

@@ -62,7 +62,7 @@ function addWorld()
   scene.add(planet);
   planet.position.y = -24;
   planet.position.z = 2;
-  addWorldModels();
+  // addWorldModels();
 }
 
 function addLight()
