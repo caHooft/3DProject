@@ -188,7 +188,7 @@ function modelManagement()
 						vectors.push(new THREE.Vector3().setFromMatrixPosition(obstacle.getObjectByName(i.toString()).matrixWorld));
 						if (i < 12)
 						{
-							vectors.push(0.3);
+							vectors.push(0.25);
 						}
 						else if (i < 14)
 						{
