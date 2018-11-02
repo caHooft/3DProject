@@ -171,86 +171,34 @@ function modelManagement()
 		else
 		{//check collision
 			var vectors = new Array();
-
-			switch (obstacle.name)
+			if (obstacle.children.length <= 1)
 			{
-				// case "gAllosaurus":
-				// 	console.log("gAllosaurus");
-				// 	break;
-
-				// case "gAnkylosaurus":
-				// 	console.log("gAnkylosaurus");
-				// 	break;
-
-				case "gBrachiosaurus":
-					for (var i = 0; i < obstacle.children.length - 1; i++)
-					{
-						vectors.push(new THREE.Vector3().setFromMatrixPosition(obstacle.getObjectByName(i.toString()).matrixWorld));
-						if (i < 12)
-						{
-							vectors.push(0.25);
-						}
-						else if (i < 14)
-						{
-							vectors.push(0.85);
-						}
-						else
-						{
-							vectors.push(1.0);
-						}
-					}
-					//console.log(vectors);
-					//console.log(player.position);
-					break;
-
-				// case "gDilophosaurus":
-				// 	console.log("gDilophosaurus");
-				// 	break;
-
-				// case "gGallimimus":
-				// 	console.log("gGallimimus");
-				// 	break;
-
-				// case "gParasaurolophus":
-				// 	console.log("gParasaurolophus");
-				// 	break;
-
-				// case "gSpinosaurus":
-				// 	console.log("gSpinosaurus");
-				// 	break;
-
-				// case "gStegosaurus":
-				// 	console.log("gStegosaurus");
-				// 	break;
-
-				// case "gTRex":
-				// 	console.log("gTRex");
-				// 	break;
-
-				// case "gTriceratops":
-				// 	console.log("gTriceratops");
-				// 	break;
-
-				default:
-					vectors.push(modelPos);
-					vectors.push(0.6);
-					break;
-			}
-
-			for (var i = 0; i < vectors.length; i += 2)
+				vectors.push(modelPos);
+				vectors.push(0.6);
+			} else
 			{
-				// console.log(vectors[i]);
-				if (vectors[i].distanceTo(player.position) <= vectors[i + 1])
+				for (var i = 0; i < obstacle.children.length - 1; i++)
 				{
-					console.log("hit");
-					console.log(i / 2);
-					hasCollided = true;
-					explode();
-					gameOver();
+					vectors.push(new THREE.Vector3().setFromMatrixPosition(obstacle.getObjectByName(i.toString()).matrixWorld));
+					vectors.push(obstacle.getObjectByName(i.toString()).userData.distance);
 				}
 			}
 		}
-	});
+
+		for (var i = 0; i < vectors.length; i += 2)
+		{
+			// console.log(vectors[i]);
+			if (vectors[i].distanceTo(player.position) <= vectors[i + 1])
+			{
+				console.log("hit");
+				console.log(i / 2);
+				hasCollided = true;
+				explode();
+				gameOver();
+			}
+		}
+	}
+	);
 
 	var fromWhere;
 

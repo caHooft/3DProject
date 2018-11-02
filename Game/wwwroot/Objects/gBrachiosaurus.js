@@ -34,6 +34,9 @@ class gBrachiosaurus extends THREE.Group
 			var hitbox13 = new THREE.Points(geometry, material);
 			var hitbox14 = new THREE.Points(geometry, material);
 			var hitbox15 = new THREE.Points(geometry, material);
+			var small = { distance: 0.25 };
+			var medium = { distance: 0.85 };
+			var large = { distance: 1.00 };
 
 			hitbox1.name = "0";
 			hitbox2.name = "1";
@@ -50,6 +53,22 @@ class gBrachiosaurus extends THREE.Group
 			hitbox13.name = "12";
 			hitbox14.name = "13";
 			hitbox15.name = "14";
+
+			hitbox1.userData = small;
+			hitbox2.userData = small;
+			hitbox3.userData = small;
+			hitbox4.userData = small;
+			hitbox5.userData = small;
+			hitbox6.userData = small;
+			hitbox7.userData = small;
+			hitbox8.userData = small;
+			hitbox9.userData = small;
+			hitbox10.userData = small;
+			hitbox11.userData = small;
+			hitbox12.userData = small;
+			hitbox13.userData = medium;
+			hitbox14.userData = medium;
+			hitbox15.userData = large;
 
 			hitbox1.visible = false;
 			hitbox2.visible = false;
