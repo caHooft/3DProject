@@ -161,13 +161,10 @@ function modelManagement()
   {
     obstacle = dinosInPath[index];
     modelPos.setFromMatrixPosition(obstacle.matrixWorld);
-
     if (modelPos.z > 6 && obstacle.visible)
     {//gone out of our view zone
       modelsToRemove.push(obstacle);
-    }
-
-    else
+    } else
     {//check collision
       var vectors = new Array();
       switch (obstacle.name)
@@ -180,10 +177,26 @@ function modelManagement()
         // 	console.log("gAnkylosaurus");
         // 	break;
 
-        // case "gBrachiosaurus":
-        // 	console.log("gBrachiosaurus");
-        // 	vectors.push();
-        // 	break;
+        case "gBrachiosaurus":
+          for (var i = 0; i < obstacle.children.length - 1; i++)
+          {
+            vectors.push(new THREE.Vector3().setFromMatrixPosition(obstacle.getObjectByName(i.toString()).matrixWorld));
+            if (i < 12)
+            {
+              vectors.push(0.3);
+            }
+            else if (i < 14)
+            {
+              vectors.push(0.85);
+            }
+            else
+            {
+              vectors.push(1.0);
+            }
+          }
+          //console.log(vectors);
+          //console.log(player.position);
+          break;
 
         // case "gDilophosaurus":
         // 	console.log("gDilophosaurus");
@@ -215,13 +228,16 @@ function modelManagement()
 
         default:
           vectors.push(modelPos);
+          vectors.push(0.6);
           break;
       }
-      for (var i = 0; i < vectors.length; i++)
+      for (var i = 0; i < vectors.length; i += 2)
       {
-        if (vectors[i].distanceTo(player.position) <= 0.6)
+        // console.log(vectors[i]);
+        if (vectors[i].distanceTo(player.position) <= vectors[i + 1])
         {
-          //console.log("hit");
+          console.log("hit");
+          console.log(i / 2);
           hasCollided = true;
           explode();
           gameOver();
@@ -229,9 +245,7 @@ function modelManagement()
       }
     }
   });
-
   var fromWhere;
-
   modelsToRemove.forEach(function (element, index)
   {
     obstacle = modelsToRemove[index];
