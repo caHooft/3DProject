@@ -63,13 +63,13 @@ class gStegosaurus extends THREE.Group
 			hitbox6.position.y = 0.35;
 			hitbox7.position.y = 0.2;
 
-			hitbox1.position.z = -1.35;
-			hitbox2.position.z = -0.88;
-			hitbox3.position.z = -0.65;
-			hitbox4.position.z = -0.15;
-			hitbox5.position.z = 0.25;
-			hitbox6.position.z = 0.6;
-			hitbox7.position.z = -0.3;
+			hitbox1.position.z = 1.35;
+			hitbox2.position.z = 0.88;
+			hitbox3.position.z = 0.65;
+			hitbox4.position.z = 0.15;
+			hitbox5.position.z = -0.25;
+			hitbox6.position.z = -0.6;
+			hitbox7.position.z = 0.3;
 
 			object.add(hitbox1);
 			object.add(hitbox2);

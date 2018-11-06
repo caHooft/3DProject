@@ -53,10 +53,10 @@ class gAnkylosaurus extends THREE.Group
 			hitbox4.position.y = 0.3;
 			hitbox5.position.y = 0.2;
 
-			hitbox1.position.z = -1.44;
-			hitbox2.position.z = -1.0;
-			hitbox3.position.z = 1.2;
-			hitbox4.position.z = 1.6;
+			hitbox1.position.z = 1.44;
+			hitbox2.position.z = 1.0;
+			hitbox3.position.z = -1.2;
+			hitbox4.position.z = -1.6;
 			hitbox5.position.z = 0.0;
 
 			object.add(hitbox1);

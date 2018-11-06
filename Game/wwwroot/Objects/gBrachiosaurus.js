@@ -118,21 +118,21 @@ class gBrachiosaurus extends THREE.Group
 			hitbox14.position.y = 1.7;
 			hitbox15.position.y = 1.9;
 
-			hitbox1.position.z = -1.1;
-			hitbox2.position.z = -1.05;
-			hitbox3.position.z = -1.0;
-			hitbox4.position.z = 0.7;
-			hitbox5.position.z = 0.7;
-			hitbox6.position.z = 0.7;
-			hitbox7.position.z = 0.7;
-			hitbox8.position.z = 0.7;
-			hitbox9.position.z = 0.7;
-			hitbox10.position.z = -1.1;
-			hitbox11.position.z = -1.05;
-			hitbox12.position.z = -1.0;
-			hitbox13.position.z = -0.18;
-			hitbox14.position.z = 0.33;
-			hitbox15.position.z = -0.7;
+			hitbox1.position.z = 1.1;
+			hitbox2.position.z = 1.05;
+			hitbox3.position.z = 1.0;
+			hitbox4.position.z = -0.7;
+			hitbox5.position.z = -0.7;
+			hitbox6.position.z = -0.7;
+			hitbox7.position.z = -0.7;
+			hitbox8.position.z = -0.7;
+			hitbox9.position.z = -0.7;
+			hitbox10.position.z = 1.1;
+			hitbox11.position.z = 1.05;
+			hitbox12.position.z = 1.0;
+			hitbox13.position.z = 0.18;
+			hitbox14.position.z = -0.33;
+			hitbox15.position.z = 0.7;
 
 			object.add(hitbox1);
 			object.add(hitbox2);

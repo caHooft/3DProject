@@ -73,15 +73,15 @@ class gParasaurolophus extends THREE.Group
 			hitbox8.position.y = 1.2;
 			hitbox9.position.y = 1.2;
 
-			hitbox1.position.z = -1.35;
-			hitbox2.position.z = -1.35;
-			hitbox3.position.z = -0.38;
-			hitbox4.position.z = -0.38;
-			hitbox5.position.z = 0.22;
-			hitbox6.position.z = 0.74;
-			hitbox7.position.z = 0.74;
-			hitbox8.position.z = 1.21;
-			hitbox9.position.z = 1.7;
+			hitbox1.position.z = 1.35;
+			hitbox2.position.z = 1.35;
+			hitbox3.position.z = 0.38;
+			hitbox4.position.z = 0.38;
+			hitbox5.position.z = -0.22;
+			hitbox6.position.z = -0.74;
+			hitbox7.position.z = -0.74;
+			hitbox8.position.z = -1.21;
+			hitbox9.position.z = -1.7;
 
 			object.add(hitbox1);
 			object.add(hitbox2);

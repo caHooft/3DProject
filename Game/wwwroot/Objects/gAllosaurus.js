@@ -83,17 +83,17 @@ class gAllosaurus extends THREE.Group
 			hitbox10.position.y = 1.05;
 			hitbox11.position.y = 1.05;
 
-			hitbox1.position.z = -1.22;
-			hitbox2.position.z = -0.7;
-			hitbox3.position.z = -0.8;
-			hitbox4.position.z = -0.37;
-			hitbox5.position.z = 0.05;
+			hitbox1.position.z = 1.22;
+			hitbox2.position.z = 0.7;
+			hitbox3.position.z = 0.8;
+			hitbox4.position.z = 0.37;
+			hitbox5.position.z = -0.05;
 			hitbox6.position.z = 0;
 			hitbox7.position.z = 0;
-			hitbox8.position.z = 0.45;
-			hitbox9.position.z = 0.9;
-			hitbox10.position.z = 1.33;
-			hitbox11.position.z = 1.7;
+			hitbox8.position.z = -0.45;
+			hitbox9.position.z = -0.9;
+			hitbox10.position.z = -1.33;
+			hitbox11.position.z = -1.7;
 
 			object.add(hitbox1);
 			object.add(hitbox2);

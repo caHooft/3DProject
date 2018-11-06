@@ -58,12 +58,12 @@ class gSpinosaurus extends THREE.Group
 			hitbox5.position.y = 1.0;
 			hitbox6.position.y = 1.0;
 
-			hitbox1.position.z = -1.1;
+			hitbox1.position.z = 1.1;
 			hitbox2.position.z = 0.0;
-			hitbox3.position.z = 0.37;
-			hitbox4.position.z = 0.95;
-			hitbox5.position.z = 1.5;
-			hitbox6.position.z = 2.05;
+			hitbox3.position.z = -0.37;
+			hitbox4.position.z = -0.95;
+			hitbox5.position.z = -1.5;
+			hitbox6.position.z = -2.05;
 
 			object.add(hitbox1);
 			object.add(hitbox2);

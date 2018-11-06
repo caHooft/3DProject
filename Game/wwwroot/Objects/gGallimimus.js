@@ -43,9 +43,9 @@ class gGallimimus extends THREE.Group
 			hitbox2.position.y = 0.25;
 			hitbox3.position.y = 0.25;
 
-			hitbox1.position.z = -0.5;
+			hitbox1.position.z = 0.5;
 			hitbox2.position.z = 0.0;
-			hitbox3.position.z = 0.25;
+			hitbox3.position.z = -0.25;
 
 			object.add(hitbox1);
 			object.add(hitbox2);
