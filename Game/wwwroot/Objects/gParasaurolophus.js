@@ -29,7 +29,7 @@ class gParasaurolophus extends THREE.Group
 			var hitbox7 = new THREE.Points(geometry, material);
 			var hitbox8 = new THREE.Points(geometry, material);
 			var hitbox9 = new THREE.Points(geometry, material);
-			var small = { distance: 0.4 };
+			var small = { distance: 0.3 };
 			var medium = { distance: 0.6 };
 			var large = { distance: 0.75 };
 
@@ -64,14 +64,14 @@ class gParasaurolophus extends THREE.Group
 			hitbox9.visible = false;
 
 			hitbox1.position.y = 1.1;
-			hitbox2.position.y = 0.7;
+			hitbox2.position.y = 0.8;
 			hitbox3.position.y = 0.42;
 			hitbox4.position.y = 0.75;
 			hitbox5.position.y = 0.92;
 			hitbox6.position.y = 1.1;
 			hitbox7.position.y = 0.85;
-			hitbox8.position.y = 0.9;
-			hitbox9.position.y = 0.9;
+			hitbox8.position.y = 1.1;
+			hitbox9.position.y = 1.1;
 
 			hitbox1.position.z = -1.35;
 			hitbox2.position.z = -1.35;

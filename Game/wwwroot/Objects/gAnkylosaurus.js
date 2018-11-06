@@ -27,7 +27,7 @@ class gAnkylosaurus extends THREE.Group
 			var hitbox5 = new THREE.Points(geometry, material);
 			var small = { distance: 0.4 };
 			//var medium = { distance: 0.3 };
-			var large = { distance: 1.25 };
+			var large = { distance: 1.0 };
 
 			hitbox1.name = "0";
 			hitbox2.name = "1";
@@ -51,7 +51,7 @@ class gAnkylosaurus extends THREE.Group
 			hitbox2.position.y = 0.55;
 			hitbox3.position.y = 0.3;
 			hitbox4.position.y = 0.3;
-			hitbox5.position.y = 0;
+			hitbox5.position.y = 0.2;
 
 			hitbox1.position.z = -1.44;
 			hitbox2.position.z = -1.0;

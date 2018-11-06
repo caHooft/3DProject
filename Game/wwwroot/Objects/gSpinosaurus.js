@@ -26,8 +26,8 @@ class gSpinosaurus extends THREE.Group
 			var hitbox4 = new THREE.Points(geometry, material);
 			var hitbox5 = new THREE.Points(geometry, material);
 			var hitbox6 = new THREE.Points(geometry, material);
-			var small = { distance: 0.5 };
-			var medium = { distance: 0.6 };
+			var small = { distance: 0.35 };
+			var medium = { distance: 0.5 };
 			var large = { distance: 0.75 };
 
 			hitbox1.name = "0";
@@ -51,12 +51,12 @@ class gSpinosaurus extends THREE.Group
 			hitbox5.visible = false;
 			hitbox6.visible = false;
 
-			hitbox1.position.y = 0.95;
+			hitbox1.position.y = 1.0;
 			hitbox2.position.y = 1.2;
 			hitbox3.position.y = 0.25;
-			hitbox4.position.y = 0.85;
-			hitbox5.position.y = 0.85;
-			hitbox6.position.y = 0.85;
+			hitbox4.position.y = 1.0;
+			hitbox5.position.y = 1.0;
+			hitbox6.position.y = 1.0;
 
 			hitbox1.position.z = -1.1;
 			hitbox2.position.z = 0.0;
@@ -73,7 +73,7 @@ class gSpinosaurus extends THREE.Group
 			object.add(hitbox6);
 			return object;
 		}
-		console.log("spin");
+
 		if (this._loadState != LoadStates.NOT_LOADING) return;
 
 		this._loadState = LoadStates.LOADING;

@@ -73,7 +73,7 @@ class gTRex extends THREE.Group
 			object.add(hitbox6);
 			return object;
 		}
-		console.log("trex");
+
 		if (this._loadState != LoadStates.NOT_LOADING) return;
 
 		this._loadState = LoadStates.LOADING;
