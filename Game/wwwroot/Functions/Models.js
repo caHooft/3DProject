@@ -36,7 +36,7 @@ function createModelPool()
 //returns model given an index from 0/9
 function createModel(index)
 {
-	console.log(index);
+	index = 9;
 
 	switch (index)
 	{
@@ -174,7 +174,7 @@ function modelManagement()
 			if (obstacle.children.length < 2)
 			{
 				vectors.push(modelPos);
-				vectors.push(0.6);
+				vectors.push(0.4);
 			}
 
 			else
@@ -190,8 +190,6 @@ function modelManagement()
 			{
 				if (vectors[i].distanceTo(player.position) <= vectors[i + 1])
 				{
-					console.log("hit");
-					console.log(i / 2);
 					hasCollided = true;
 					explode();
 					gameOver();

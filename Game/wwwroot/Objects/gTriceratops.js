@@ -27,7 +27,7 @@ class gTriceratops extends THREE.Group
 			var hitbox5 = new THREE.Points(geometry, material);
 			//var small = { distance: 0.2 };
 			var medium = { distance: 0.4 };
-			var large = { distance: 0.5 };
+			var large = { distance: 0.6 };
 
 			hitbox1.name = "0";
 			hitbox2.name = "1";
@@ -39,7 +39,7 @@ class gTriceratops extends THREE.Group
 			hitbox2.userData = medium;
 			hitbox3.userData = large;
 			hitbox4.userData = medium;
-			hitbox5.userData = large;
+			hitbox5.userData = medium;
 
 			hitbox1.visible = false;
 			hitbox2.visible = false;
@@ -53,11 +53,11 @@ class gTriceratops extends THREE.Group
 			hitbox4.position.y = 0.68;
 			hitbox5.position.y = 0.4;
 
-			hitbox1.position.z = -1.22;
-			hitbox2.position.z = -0.95;
-			hitbox3.position.z = -0.5;
-			hitbox4.position.z = -0.2;
-			hitbox5.position.z = 0.1;
+			hitbox1.position.z = 1.22;
+			hitbox2.position.z = 0.95;
+			hitbox3.position.z = 0.5;
+			hitbox4.position.z = 0.2;
+			hitbox5.position.z = -0.1;
 
 			object.add(hitbox1);
 			object.add(hitbox2);

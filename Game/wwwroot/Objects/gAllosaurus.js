@@ -47,15 +47,15 @@ class gAllosaurus extends THREE.Group
 			hitbox10.name = "9";
 			hitbox11.name = "10";
 
-			hitbox1.userData = large;
+			hitbox1.userData = medium;
 			hitbox2.userData = large;
 			hitbox3.userData = large;
 			hitbox4.userData = large;
 			hitbox5.userData = large;
 			hitbox6.userData = medium;
 			hitbox7.userData = medium;
-			hitbox8.userData = medium;
-			hitbox9.userData = medium;
+			hitbox8.userData = small;
+			hitbox9.userData = small;
 			hitbox10.userData = small;
 			hitbox11.userData = small;
 
@@ -71,17 +71,17 @@ class gAllosaurus extends THREE.Group
 			hitbox10.visible = false;
 			hitbox11.visible = false;
 
-			hitbox1.position.y = 1.02;
+			hitbox1.position.y = 1.1;
 			hitbox2.position.y = 0.75;
 			hitbox3.position.y = 0.4;
 			hitbox4.position.y = 0.8;
 			hitbox5.position.y = 0.8;
 			hitbox6.position.y = 0.2;
 			hitbox7.position.y = 0.5;
-			hitbox8.position.y = 0.9;
-			hitbox9.position.y = 0.9;
-			hitbox10.position.y = 0.96;
-			hitbox11.position.y = 0.96;
+			hitbox8.position.y = 1.05;
+			hitbox9.position.y = 1.05;
+			hitbox10.position.y = 1.05;
+			hitbox11.position.y = 1.05;
 
 			hitbox1.position.z = -1.22;
 			hitbox2.position.z = -0.7;
