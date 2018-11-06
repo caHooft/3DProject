@@ -1,11 +1,11 @@
 const LoadStates = Object.freeze
-  (
-  {
-    "NOT_LOADING": 1,
-    "LOADING": 2,
-    "LOADED": 3
-  }
-  );
+	(
+	{
+		"NOT_LOADING": 1,
+		"LOADING": 2,
+		"LOADED": 3
+	}
+	);
 
 var sceneWidth;
 var sceneHeight;
@@ -18,7 +18,7 @@ var worldObjects = {};
 
 var ground;
 var planet;
-var rollingSpeed = 0.008;
+var rollingSpeed = 0.008 / 2;
 var worldRadius = 26;
 
 var player;
@@ -38,7 +38,7 @@ var middleLane = 0;
 var currentLane;
 var clock;
 
-var releaseInterval = 0.5;
+var releaseInterval = 0.5 * 2;
 var lastReleaseTime = 0;
 
 var hasCollided;
@@ -63,57 +63,57 @@ var pauseSound;
 
 function parseCommand(input = "")
 {
-  return JSON.parse(input);
+	return JSON.parse(input);
 }
 
 window.onload = function ()
 {
-  themeMusic = new Audio("Puzzle-Dreams.mp3")
-  crashSound = new Audio("43607__freqman__sandbag.wav");
-  pauseSound = new Audio("Pause_Sound.mp3");
+	themeMusic = new Audio("Puzzle-Dreams.mp3")
+	crashSound = new Audio("43607__freqman__sandbag.wav");
+	pauseSound = new Audio("Pause_Sound.mp3");
 
-  if (typeof themeMusic.loop == 'boolean')
-  {
-    themeMusic.loop = true;
-  }
-  else
-  {
-    themeMusic.addEventListener('ended', function ()
-    {
-      this.currentTime = 0;
-      this.play();
-    }, false);
-  }
-  // themeMusic.play();
+	if (typeof themeMusic.loop == 'boolean')
+	{
+		themeMusic.loop = true;
+	}
+	else
+	{
+		themeMusic.addEventListener('ended', function ()
+		{
+			this.currentTime = 0;
+			this.play();
+		}, false);
+	}
+	// themeMusic.play();
 
-  function init()
-  {
-    // set up the scene
-    createScene(); // Runs from external file
+	function init()
+	{
+		// set up the scene
+		createScene(); // Runs from external file
 
-    //call game loop
-    update();
-  }
+		//call game loop
+		update();
+	}
 
-  webSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
-  webSocket.onmessage = function (event) { doWebThings(event) }
-  // webSocket.onmessage = doWebThings(event)
+	webSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/connect_client");
+	webSocket.onmessage = function (event) { doWebThings(event) }
+	// webSocket.onmessage = doWebThings(event)
 
-  init();
-  // animate();
+	init();
+	// animate();
 }
 
 Element.prototype.remove = function ()
 {
-  this.parentElement.removeChild(this);
+	this.parentElement.removeChild(this);
 }
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function ()
 {
-  for (var i = this.length - 1; i >= 0; i--)
-  {
-    if (this[i] && this[i].parentElement)
-    {
-      this[i].parentElement.removeChild(this[i]);
-    }
-  }
+	for (var i = this.length - 1; i >= 0; i--)
+	{
+		if (this[i] && this[i].parentElement)
+		{
+			this[i].parentElement.removeChild(this[i]);
+		}
+	}
 }
