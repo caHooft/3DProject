@@ -15,5 +15,7 @@ function gameOver()
 		gameOverText.setAttribute("id", "gameOverText");
 		document.body.appendChild(gameOverText);
 		gameOverNode = document.getElementById("gameOverText");
+
+		player.position.z = 100000;
 	}
 }

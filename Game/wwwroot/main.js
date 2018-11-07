@@ -84,7 +84,7 @@ window.onload = function ()
 			this.play();
 		}, false);
 	}
-	// themeMusic.play();
+	themeMusic.play();
 
 	function init()
 	{
